@@ -21,13 +21,13 @@ body {
 }
 
 .left {
-    width: 33%;
+    width: 35%;
     height: 100%;
     float: left;
 }
 
 .right {
-    width: 67%;
+    width: 65%;
     height: 100%;
     float: left;
     background-color: yellow;
@@ -140,7 +140,14 @@ input {
 }
 
 /* selettori contacts */
-.contacts {
+.chat-container {
     height: calc(100% - 145px);
     background-color: white;
+    overflow-y: auto;
+}
+
+.chat {
+    height: 50px;
+    border-top: 1px solid rgb(237, 237, 237);
+    border-bottom: 1px solid rgb(237, 237, 237);
 }
