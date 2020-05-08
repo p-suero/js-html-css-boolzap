@@ -18,6 +18,8 @@ body {
     height: 90%;
     background-color: white;
     margin: auto;
+    box-shadow: 0 0px 3px 0 grey;
+
 }
 
 .left {
@@ -77,6 +79,7 @@ i, img {
     color: rgb(145, 145, 145);
     padding: 0 13px;
     font-size: 16px;
+    position: relative;
 }
 
 /* selettori banner */
@@ -113,7 +116,7 @@ i, img {
 
 .banner-text p:nth-child(2) {
     font-size: 11px;
-    color: rgba(48, 48, 48, 0.8);
+    color: rgba(48, 48, 48, 0.7);
 }
 
 .banner-text p:nth-child(2):hover {
@@ -157,7 +160,6 @@ i, img {
     height: 65px;
     padding: 10px 15px;
     border-top: 1px solid rgb(237, 237, 237);
-    border-bottom: 1px solid rgb(237, 237, 237);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -171,10 +173,10 @@ i, img {
 
 .chat-info {
     padding-left: 10px;
-    line-height: 20px;
+    line-height: 22px;
 }
 
-.chat h4 {
+.chat h5 {
     font-size: 15px;
     font-weight: 500;
 }
@@ -241,6 +243,15 @@ i, img {
     float: left;
 }
 
+.time-text {
+    position: absolute;
+    font-size: 10px;
+    color: grey;
+    bottom: 0;
+    right: 5px;
+}
+
+/* selettori per la spunta alla chat (ho sfruttato la forma non perfetta del bordo) */
 .text.sent:before {
     content: "";
     border-top: 14px solid rgb(220, 248, 198);
@@ -259,15 +270,6 @@ i, img {
     position: absolute;
     top: 0;
     right: -14px;
-}
-
-.text:after {
-    content: "15.40";
-    position: absolute;
-    font-size: 10px;
-    color: grey;
-    bottom: 0;
-    right: 5px;
 }
 
 /* selettori footer */
