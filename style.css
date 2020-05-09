@@ -34,17 +34,17 @@ body {
     float: left;
 }
 
-/* CLEARFIX */
+/* SELETTORI PER OTTIMIZZARE IL CODICE */
+
+/* clearfix */
 .clearfix::after {
     content: "";
     display: table;
     clear: both;
 }
 
-/* SELETTORI PER OTTIMIZZARE IL CODICE */
-
-/* padding generico */
-.padding-fix {
+/* padding con classe generica e box-chat */
+.padding-fix, .chat {
     padding: 0 15px;
 }
 
@@ -67,11 +67,11 @@ body {
     display: flex;
     align-items: center;
 }
-/* FINE SELETTORI GENERICI */
 
 
 /* INIZIO SELETTORI DI SEZIONE */
-/* selettori header */
+
+/* selettori header-left */
 .header {
     width: 100%;
     height: 45px;
@@ -131,7 +131,7 @@ body {
     text-decoration: underline;
 }
 
-/* selettori della barra search */
+/* selettori della barra di ricerca */
 #search-contact {
     height: 50px;
     display: flex;
@@ -192,6 +192,10 @@ body {
     right: 5px;
 }
 
+.chat:hover {
+    background-color: rgba(48, 48, 48, 0.2)
+}
+
 /* selettori header-right */
 .contact-info-container {
     display: flex;
@@ -209,7 +213,7 @@ body {
     line-height: 15px;
 }
 
-/* selettori messagio */
+/* selettori messaggio */
 #message-container {
     height: calc(100% - 95px);
     background-image: url(img/background.jpg);
@@ -222,7 +226,7 @@ body {
     float: left;
     clear: both;
     max-width: 300px;
-    padding: 15px;
+    padding: 18px;
     margin: 15px;
     font-size: 13px;
     border-radius: 10px;
@@ -247,11 +251,15 @@ body {
     position: absolute;
     font-size: 10px;
     bottom: 0;
-    right: 5px;
+    right: 10px;
     color: rgba(48, 48, 48, 0.7);
 }
 
-/* selettori per la spunta alla chat (ho sfruttato la forma non perfetta del bordo) */
+.sent .time-text {
+    right: 25px;
+}
+
+/*** selettori per la spunta alla chat (ho sfruttato la forma non perfetta del bordo) ***/
 .text.sent:before {
     content: "";
     border-top: 14px solid rgb(220, 248, 198);
@@ -270,6 +278,18 @@ body {
     position: absolute;
     top: 0;
     right: -14px;
+}
+
+/*** selettore per la spunta blu ***/
+.sent:after {
+    content: "\f560";
+    font-weight: bold;
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    color:rgb(79, 195, 247);
+    font-size: 10px;
+    bottom: 0;
+    right: 10px;
 }
 
 /* selettori footer */
