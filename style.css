@@ -4,13 +4,14 @@
     box-sizing: border-box;
 }
 
-/* selettori per il layout generale */
+/* SELETTORI PER IL LAYOUT */
 body {
     font-family: 'Roboto', sans-serif;
     width: 100%;
     height: 100vh;
     background: linear-gradient( #00bfa5 0%, #00bfa5 20%, #dddbd1 20%, #dddbd1 100%);
     display: flex;
+    color: rgba(48, 48, 48, 0.7);
 }
 
 #page-wrapper {
@@ -18,77 +19,91 @@ body {
     height: 90%;
     background-color: white;
     margin: auto;
-    box-shadow: 0 0px 3px 0 grey;
-
+    box-shadow: 0 0px 4px 0 rgba(48, 48, 48, 0.7);
 }
 
-.left {
+.page-left {
     width: 35%;
     height: 100%;
     float: left;
 }
 
-.right {
+.page-right {
     width: 65%;
     height: 100%;
     float: left;
 }
 
-/* clearfix */
+/* CLEARFIX */
 .clearfix::after {
     content: "";
     display: table;
     clear: both;
 }
 
-/* padding di default */
-.padding {
+/* SELETTORI PER OTTIMIZZARE IL CODICE */
+
+/* padding generico */
+.padding-fix {
     padding: 0 15px;
 }
 
-/* cursore sulle icone */
-i, img {
+/* classe cursor ed impostazione del cursore sulle icone */
+.cursor {
     cursor: pointer;
 }
 
+/* background-color */
+.bk-color-grey {
+    background-color: rgb(237, 237, 237);
+}
+
+.bk-color-white {
+    background-color: white;
+}
+
+/* contenitore imagini */
+.img-container {
+    display: flex;
+    align-items: center;
+}
+/* FINE SELETTORI GENERICI */
+
+
+/* INIZIO SELETTORI DI SEZIONE */
 /* selettori header */
-.header-left, .header-right {
+.header {
     width: 100%;
     height: 45px;
-    background-color: rgb(237, 237, 237);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.header-left {
-    border-right: 1px solid rgba(74, 74, 74, 0.1);
-}
-
-.header-left .photo-profile, .header-right  .photo-profile,
-.header-left .photo-profile img, .header-right  .photo-profile img {
+.header img {
     width: 30px;
     height: 30px;
-}
-
-.header-left .photo-profile img, .header-right  .photo-profile img {
     border-radius: 50px;
 }
 
 .icons i {
     color: rgb(145, 145, 145);
-    padding: 0 13px;
+    margin-left: 15px;
     font-size: 16px;
-    position: relative;
+    cursor: pointer;
+}
+
+#header-left {
+    border-right: 1px solid rgba(74, 74, 74, 0.1);
 }
 
 /* selettori banner */
-.banner-alerts {
+#banner-alerts {
     height: 70px;
     background-color: rgb(157, 225, 254);
     display: flex;
     align-items: center;
-    cursor: pointer;
+    font-size: 11.5px;
 }
 
 .icon-banner {
@@ -101,47 +116,37 @@ i, img {
     justify-content: center;
     align-items: center;
     margin-right: 12px;
-}
-
-.icon-banner i {
     color: rgb(157, 225, 254);
     font-size: 13px;
 }
 
-.banner-text p {
-    line-height: 15px;
-    font-size: 12px;
+.banner-text p:first-child {
+    line-height: 18px;
+    font-size: 12.5px;
     font-weight: 500;
-}
-
-.banner-text p:nth-child(2) {
-    font-size: 11px;
-    color: rgba(48, 48, 48, 0.7);
+    color: black;
 }
 
 .banner-text p:nth-child(2):hover {
     text-decoration: underline;
 }
 
-/* selettori search */
-.search-contact{
+/* selettori della barra search */
+#search-contact {
     height: 50px;
-    background-color: rgb(237, 237, 237);
     display: flex;
     align-items: center;
-    color: rgba(0, 0, 0, 0.3);
     font-size: 12px;
 }
 
-.input-container {
+#search-contact .input-container {
     width: 100%;
     height: 70%;
     padding: 0 10px;
-    background-color: white;
     border-radius: 20px;
 }
 
-.search-contact input {
+#search-contact input {
     width: calc(100% - 40px);
     height: 100%;
     outline: 0;
@@ -150,45 +155,38 @@ i, img {
 }
 
 /* selettori contacts */
-.chat-container {
+#chat-container {
     height: calc(100% - 165px);
-    background-color: white;
     overflow-y: auto;
 }
 
 .chat {
     height: 65px;
-    padding: 10px 15px;
     border-top: 1px solid rgb(237, 237, 237);
-    cursor: pointer;
     display: flex;
     align-items: center;
     position: relative;
 }
 
-.img-chat, .img-chat img {
+.img-chat img {
     width: 43px;
     height: 43px;
 }
 
 .chat-info {
     padding-left: 10px;
-    line-height: 22px;
+    line-height: 20px;
+    font-size: 11px;
 }
 
-.chat h5 {
+.chat-info h5 {
     font-size: 15px;
     font-weight: 500;
-}
-
-.chat-text {
-    font-size: 11px;
-    color: grey;
+    color: black;
 }
 
 .time {
     position: absolute;
-    color: grey;
     font-size: 10px;
     top: 10px;
     right: 5px;
@@ -198,20 +196,21 @@ i, img {
 .contact-info-container {
     display: flex;
     align-items: center;
-    cursor: pointer;
+    font-size: 10.3px;
 }
 
 .text-info {
     padding-left: 10px;
 }
 
-.text-info p {
-    color: grey;
-    font-size: 10px;
+.text-info h6 {
+    font-size: 14px;
+    color: black;
+    line-height: 15px;
 }
 
 /* selettori messagio */
-.message-container {
+#message-container {
     height: calc(100% - 95px);
     background-image: url(img/background.jpg);
     background-size: contain;
@@ -226,11 +225,12 @@ i, img {
     padding: 15px;
     margin: 15px;
     font-size: 13px;
-    background-color: rgb(220, 248, 198);
     border-radius: 10px;
     clear: both;
     line-height: 16px;
     position: relative;
+    cursor: pointer;
+    color: black;
 }
 
 .sent {
@@ -246,9 +246,9 @@ i, img {
 .time-text {
     position: absolute;
     font-size: 10px;
-    color: grey;
     bottom: 0;
     right: 5px;
+    color: rgba(48, 48, 48, 0.7);
 }
 
 /* selettori per la spunta alla chat (ho sfruttato la forma non perfetta del bordo) */
@@ -273,16 +273,15 @@ i, img {
 }
 
 /* selettori footer */
-.footer-right {
+#footer-right {
     height: 50px;
-    background-color: rgb(237, 237, 237);
     color: rgb(145, 145, 145);
     display: flex;
     align-items: center;
     font-size: 20px;
 }
 
-.footer-right input {
+#footer-right input {
     border: 0;
     outline: 0;
     width: calc(100% - 40px);
