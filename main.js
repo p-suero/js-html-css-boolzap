@@ -1,10 +1,10 @@
-//attivo e disattivo l'icona d'invio secondo lo stato dell'input
+//attivo e disattivo l'icona d'invia messaggio secondo lo stato dell'input
 $("#text-input").click(function() {
     $(".icon-container .fa-microphone").removeClass("active");
     $(".icon-container .fa-paper-plane").addClass("active");
 })
 
-//uso l'event-target per intercettare il focusout del input escludendo l'icona d'invio
+//uso l'event-target per intercettare il focusout del input escludendo l'icona d'invio affinche rimanga con display diverso da "none"
 $(document).click(function(event) {
     var target = $(event.target);
     if(!(target.is("#text-input, .fa-paper-plane"))) {
@@ -34,11 +34,16 @@ function send_message () {
         //aggiungo il testo al tag
         new_message.children("p:first-child").text(text_input);
         //aggiungo l'ora del sistema al tag
-        new_message.children(".time-text").text(myFunction())
+        new_message.children(".time-text").text(myFunction());
         //inserisco il tag nel html
         $("#message-container").append(new_message);
         //svuoto il contenuto dell'input
-        $("#text-input").val("")
+        $("#text-input").val("");
+
+        //setto la spunta blu
+        setTimeout(function() {
+            $("div:last-child .sent").addClass("read")
+        }, 1000)
 
         //faccio partire il timer per la risposta
         setTimeout(function () {
@@ -47,21 +52,29 @@ function send_message () {
             //aggiungo il testo al tag
             new_message.children("p:first-child").text("ok");
             //aggiungo l'ora del sistema al tag
-            new_message.children(".time-text").text(myFunction())
+            new_message.children(".time-text").text(myFunction());
             //inserisco il tag nel html
             $("#message-container").append(new_message);
-        },1000)
+        }, 2000)
     }
 }
 
-//funzione per il recupero dell'Ora
+//funzione per il recupero dell'ora di sistema
 function myFunction() {
   var date = new Date();
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
   if (minutes < 10) {
-      minutes = "0" + minutes
+      minutes = "0" + minutes;
   }
   var time = hours + ":" + minutes;
   return time
+}
+
+//funzione per l'auto-scroll
+function auto_scroll() {
+    var altezzaChat = $(".page-right").height();
+    $("#message-container").animate(
+        {scrollTop: altezzaChat
+    }, 700);
 }
