@@ -7,6 +7,7 @@
         <link rel="icon" href="img/icon.png">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
     <body>
         <!-- involucro dell'intera pagina -->
@@ -305,10 +306,26 @@
                 <!-- barra di input della chat aperta -->
                 <div id="footer-right" class="padding-fix bk-color-grey">
                     <i class="far fa-grin cursor"></i>
-                    <input type="text" placeholder="Scrivi un messaggio">
-                    <i class="fas fa-microphone cursor"></i>
+                    <input id="text-input" type="text" placeholder="Scrivi un messaggio">
+                    <div class="icon-container">
+                        <i class="fas fa-microphone cursor active"></i>
+                        <i class="fab fa-google-play"></i>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- template per Java S -->
+        <div class="template">
+            <div class="text sent">
+                <p></p>
+                <p class="time-text"></p>
+            </div>
+            <div class="text received">
+                <p></p>
+                <p class="time-text"></p>
+            </div>
+        </div>
+        <!-- link JS -->
+        <script src="main.js" charset="utf-8"></script>
     </body>
 </html>

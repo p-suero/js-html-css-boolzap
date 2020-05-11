@@ -309,3 +309,15 @@ body {
     border-radius: 20px;
     padding: 10px;
 }
+
+div.icon-container i {
+    display: none;
+}
+
+div i.active {
+    display: inline-block;
+}
+/* nascondo il template in pagina */
+.template {
+    display: none;
+}
