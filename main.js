@@ -1,23 +1,31 @@
-//setto la classe active tra microfono ed icona d'invio
-var input_length = $("#text_input").length
-$("#text-input").focus(function () {
-
-if (input_length > 0) {
-    //se il valore è maggiore di 0 visualizzo il tasto d'invio
-    $(".icon-container fa-microphone").removeClass("active");
-    $(".icon-container fa-google-play").addClass("active")
-}
+//attivo e disattivo  l'icona d'invio secondo lo stato dell'input
+$("#text-input").focus(function() {
+    $(".icon-container .fa-microphone").removeClass("active");
+    $(".icon-container .fa-paper-plane").addClass("active");
 })
-console.log(input_length);
-//invio il messaggio al click dell' icona invio
-$(".fa-microphone").click(send_message)
+
+$("#text-input").focusout(function() {
+    $(".icon-container .fa-paper-plane").removeClass("active");
+    $(".icon-container .fa-microphone").addClass("active");
+})
 
 
+//invio il messaggio al click dell'icona
+$(".fa-google-play").click(send_message);
 
-
+//invio il messaggio al click del tasto "enter"
+var text_input = $("#text-input")
+text_input.keypress(function(e) {
+        if(e.which == 13) {
+            send_message();
+        }
+    });
 
 //creo una funzione che inserisce un nuovo elemento all'interno del html partendo dal template
 function send_message () {
+
+
+
     //leggo il valore dell'input
     var text_input = $("#text-input").val();
     //clono l'elemento nel template
@@ -40,9 +48,7 @@ function send_message () {
         //inserisco il tag nel html
         $("#message-container").append(new_message);
     },1000)
-    //imposto il valore dell'input a 0 caratteri quando si preme verifica l'evento
-    var text_input = $("#text-input").val("");
-    text_input.onFocus()
+
 }
 
 //funzione per il recupero dell'Ora
