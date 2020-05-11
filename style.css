@@ -226,8 +226,8 @@ body {
     float: left;
     clear: both;
     max-width: 300px;
-    min-width: 80px;
-    padding: 18px;
+    min-width: 60px;
+    padding: 16px 13px;
     margin: 15px;
     font-size: 13px;
     border-radius: 10px;
@@ -236,17 +236,18 @@ body {
     position: relative;
     cursor: pointer;
     color: black;
-    text-align: left;
 }
 
 .sent {
     background-color: rgb(220, 248, 198);
     float: right;
+    text-align: right;
 }
 
 .received {
     background-color: white;
     float: left;
+    text-align: left;
 }
 
 .time-text {
