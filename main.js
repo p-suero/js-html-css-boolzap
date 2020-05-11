@@ -1,12 +1,14 @@
 //setto la classe active tra microfono ed icona d'invio
 var input_length = $("#text_input").length
+$("#text-input").focus(function () {
 
 if (input_length > 0) {
     //se il valore è maggiore di 0 visualizzo il tasto d'invio
     $(".icon-container fa-microphone").removeClass("active");
     $(".icon-container fa-google-play").addClass("active")
 }
-
+})
+console.log(input_length);
 //invio il messaggio al click dell' icona invio
 $(".fa-microphone").click(send_message)
 
@@ -51,4 +53,3 @@ function myFunction() {
   var time = hours + ":" + minutes;
   return time
 }
-console.log(myFunction());
