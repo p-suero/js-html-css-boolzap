@@ -313,6 +313,8 @@ body {
 
 div.icon-container i {
     display: none;
+    width: 20px;
+    height: 20px;
 }
 
 div i.active {

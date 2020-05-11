@@ -1,58 +1,67 @@
-//attivo e disattivo  l'icona d'invio secondo lo stato dell'input
+//attivo e disattivo l'icona d'invio secondo lo stato dell'input
 $("#text-input").click(function() {
     $(".icon-container .fa-microphone").removeClass("active");
     $(".icon-container .fa-paper-plane").addClass("active");
+})
+
+//uso l'event-target per intercettare il focusout del input escludendo l'icona d'invio
+$(document).click(function(event) {
+    var target = $(event.target);
+    if(!(target.is("#text-input, .fa-paper-plane"))) {
+        $(".icon-container .fa-paper-plane").removeClass("active");
+        $(".icon-container .fa-microphone").addClass("active");
+    }
 })
 
 //invio il messaggio al click dell'icona
 $(".fa-paper-plane").click(send_message);
 
 //invio il messaggio al click del tasto "enter"
-var text_input = $("#text-input")
-text_input.keypress(function(e) {
-        if(e.which == 13) {
-            send_message();
-        }
-    });
+$("#text-input").keypress(function(e) {
+    if(e.which == 13) {
+        send_message();
+    }
+});
 
 //creo una funzione che inserisce un nuovo elemento all'interno del html partendo dal template
 function send_message () {
-    //leggo il valore dell'input
-    text_input = $("#text-input").val();
-    //clono l'elemento nel template
-    var new_message = $(".template .sent").clone();
-    //aggiungo il testo al tag
-    new_message.children("p:first-child").text(text_input);
-    //aggiungo l'ora del sistema al tag
-    new_message.children(".time-text").text(myFunction())
-    //inserisco il tag nel html
-    $("#message-container").append(new_message);
-    //svuoto il contenuto dell'input
-    $("#text-input").val("")
-
-    //inverto le icone all'invio del messaggio
-    $(".icon-container .fa-paper-plane").removeClass("active");
-    $(".icon-container .fa-microphone").addClass("active");
-
-    //faccio partire il timer per la risposta
-    setTimeout(function () {
+    //valido l'input
+    if ($("#text-input").val().length != 0) {
+        //leggo il valore dell'input
+        var text_input = $("#text-input").val();
         //clono l'elemento nel template
-        var new_message = $(".template .received").clone();
+        var new_message = $(".template .sent").clone();
         //aggiungo il testo al tag
-        new_message.children("p:first-child").text("ok");
+        new_message.children("p:first-child").text(text_input);
         //aggiungo l'ora del sistema al tag
         new_message.children(".time-text").text(myFunction())
         //inserisco il tag nel html
         $("#message-container").append(new_message);
-    },1000)
-}
+        //svuoto il contenuto dell'input
+        $("#text-input").val("")
 
+        //faccio partire il timer per la risposta
+        setTimeout(function () {
+            //clono l'elemento nel template
+            var new_message = $(".template .received").clone();
+            //aggiungo il testo al tag
+            new_message.children("p:first-child").text("ok");
+            //aggiungo l'ora del sistema al tag
+            new_message.children(".time-text").text(myFunction())
+            //inserisco il tag nel html
+            $("#message-container").append(new_message);
+        },1000)
+    }
+}
 
 //funzione per il recupero dell'Ora
 function myFunction() {
   var date = new Date();
   var hours = date.getHours()
   var minutes = date.getMinutes()
+  if (minutes < 10) {
+      minutes = "0" + minutes
+  }
   var time = hours + ":" + minutes;
   return time
 }
