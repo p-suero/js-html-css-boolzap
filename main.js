@@ -28,6 +28,24 @@ $(document).ready(function() {
     //****************BARRA RICERCA CHAT****************//
     //*************************************************//
 
+    //creo un evento al clikc di un pulsante della tastiera sull'input
+    $("#search-contact input").keyup(function () {
+        //recupro il valore dell'input inserito dall'utente
+        var val_src_chat = $("#search-contact input").val().trim().toUpperCase();
+
+        //ciclo i singoli contatti
+        $("#chat-container .chat").each(function() {
+            //recupero il titolo del contatto
+            var nome_contatto = $(this).find("h5").text().toUpperCase();
+            //se ho un contatto uguale all' intero o parziale valore dell'utente mostro il contatto altrimenti lo nascondo
+            if (nome_contatto.includes(val_src_chat)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        })
+    })
+
 
 
 
