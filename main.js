@@ -4,13 +4,13 @@ $(document).ready(function() {
     //***************SETTO L'INPUT DEI MESSAGGI***************//
     //*******************************************************//
 
-    //attivo e disattivo l'icona d'invio messaggio secondo lo stato dell'input
+    //attivo  l'icona d'invio messaggio al click dell'input
     $("#text-input").click(function() {
         $(".icon-container .fa-microphone").removeClass("active");
         $(".icon-container .fa-paper-plane").addClass("active");
     });
 
-    //uso l'event-target per intercettare il focusout del input escludendo l'icona d'invio affinche rimanga con display diverso da "none"
+    // uso l'event-target per intercettare il focusout dell'input escludendo l'icona d'invio affinche rimanga con display diverso da "none"
     $(document).click(function(event) {
         var target = $(event.target);
         if(!(target.is("#text-input, .fa-paper-plane"))) {
@@ -36,7 +36,9 @@ $(document).ready(function() {
             //leggo il valore dell'input
             var text_input = $("#text-input").val();
             //clono l'elemento nel template
-            var new_message = $(".template .sent").clone();
+            var new_message = $(".template .text").clone();
+            //aggiungo la classe messaggio da inviare
+            new_message.addClass("sent");
             //aggiungo il testo al tag
             new_message.children("p:first-child").text(text_input);
             //aggiungo l'ora del sistema al tag
@@ -54,7 +56,9 @@ $(document).ready(function() {
             //faccio partire il timer per la risposta
             setTimeout(function () {
                 //clono l'elemento nel template
-                var new_message = $(".template .received").clone();
+                var new_message = $(".template .text").clone();
+                //aggiungo la classe "messaggio inviato"
+                new_message.addClass("received")
                 //aggiungo il testo al tag
                 new_message.children("p:first-child").text("ok");
                 //aggiungo l'ora del sistema al tag
