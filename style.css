@@ -326,6 +326,7 @@ div.icon-container i {
 div i.active {
     display: inline-block;
 }
+
 /* nascondo il template in pagina */
 .template {
     display: none;

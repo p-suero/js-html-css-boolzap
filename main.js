@@ -32,7 +32,7 @@ $(document).ready(function() {
     //creo una funzione che inserisce un nuovo elemento all'interno del html partendo dal template
     function send_message () {
         //valido l'input
-        if ($("#text-input").val().length != 0) {
+        if ($("#text-input").val().trim().length != 0) {
             //leggo il valore dell'input
             var text_input = $("#text-input").val();
             //clono l'elemento nel template
