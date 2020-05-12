@@ -25,6 +25,7 @@ $(document).ready(function() {
         }
     });
 
+
     //****************BARRA RICERCA CHAT****************//
     //*************************************************//
 
@@ -74,7 +75,7 @@ $(document).ready(function() {
 
     //aggiungo azione all'evento mouse down sull'icona "cancella valore input"
     $("#search-contact span").mousedown(function(event) {
-        //spossesso il mousedown delle sue funzioni per rimanere l'input attivo
+        //spossesso il mousedown delle sue funzioni per lasciare l'input attivo
         event.preventDefault();
         //svuoto il valore dell'input
         ricerca_contatti.val("");
