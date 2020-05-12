@@ -28,23 +28,59 @@ $(document).ready(function() {
     //****************BARRA RICERCA CHAT****************//
     //*************************************************//
 
-    //creo un evento al clikc di un pulsante della tastiera sull'input
-    $("#search-contact input").keyup(function () {
+    //variabile contenente il selettore input della ricerca contatti
+    var ricerca_contatti = $("#search-contact input");
+
+    //creo un evento alla pressione di un pulsante della tastiera sull'input
+    ricerca_contatti.keyup(function () {
         //recupro il valore dell'input inserito dall'utente
-        var val_src_chat = $("#search-contact input").val().trim().toUpperCase();
+        var input_search = ricerca_contatti.val().trim().toUpperCase();
 
         //ciclo i singoli contatti
         $("#chat-container .chat").each(function() {
             //recupero il titolo del contatto
             var nome_contatto = $(this).find("h5").text().toUpperCase();
             //se ho un contatto uguale all' intero o parziale valore dell'utente mostro il contatto altrimenti lo nascondo
-            if (nome_contatto.includes(val_src_chat)) {
+            if (nome_contatto.includes(input_search)) {
                 $(this).show();
             } else {
                 $(this).hide();
             }
         })
     })
+
+    //cambio l'icona di fianco l'input quando questo è attivo
+    ricerca_contatti.focus(function() {
+        $("#search-contact .fa-search").removeClass("active");
+        $("#search-contact .fa-arrow-right").addClass("active");
+    })
+
+    //ricambio quando è disattivo
+    ricerca_contatti.blur(function() {
+        $("#search-contact .fa-arrow-right").removeClass("active");
+        $("#search-contact .fa-search").addClass("active");
+    })
+
+    //se c'e testo visualizzo il caratter "X" per eliminare il valore dell'input
+    ricerca_contatti.keyup(function() {
+        if ($("#search-contact input").val().length > 0) {
+            $("#search-contact span").addClass("active");
+        } else {
+            $("#search-contact span").removeClass("active");
+        }
+    })
+
+    //aggiungo azione all'evento mouse down sull'icona "esci dall'input e cancella valore input"
+    $("#search-contact .fa-arrow-right, #search-contact span").mousedown(function() {
+        //svuoto il valore dell'input
+        ricerca_contatti.val("");
+        //all'uscita dall'input mostro tutti i contatti
+        $("#chat-container .chat").show();
+        //rimuovo il display all'icona "rimuovi valore input"
+        $("#search-contact span").removeClass("active");
+    })
+
+
 
 
 
