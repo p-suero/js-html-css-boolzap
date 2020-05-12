@@ -57,8 +57,10 @@ $(document).ready(function() {
 
     //ricambio quando è disattivo
     ricerca_contatti.blur(function() {
-        $("#search-contact .fa-arrow-right").removeClass("active");
-        $("#search-contact .fa-search").addClass("active");
+        if (ricerca_contatti.val().length == 0) {
+            $("#search-contact .fa-arrow-right").removeClass("active");
+            $("#search-contact .fa-search").addClass("active");
+        }
     })
 
     //se c'e testo visualizzo il caratter "X" per eliminare il valore dell'input
@@ -78,18 +80,10 @@ $(document).ready(function() {
         $("#chat-container .chat").show();
         //rimuovo il display all'icona "rimuovi valore input"
         $("#search-contact span").removeClass("active");
+        //inverto il display alle icone sulla sinistra del display
+        $("#search-contact .fa-arrow-right").removeClass("active");
+        $("#search-contact .fa-search").addClass("active");
     })
-
-
-
-
-
-
-
-
-
-
-
 
 
     //********************FUNZIONI********************//
