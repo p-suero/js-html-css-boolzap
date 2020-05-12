@@ -55,11 +55,13 @@ $(document).ready(function() {
         $("#search-contact .fa-arrow-right").addClass("active");
     })
 
-    //ricambio quando è disattivo
-    ricerca_contatti.blur(function() {
+    //ricambio quando l'input non è attivo
+    ricerca_contatti.blur(function(event) {
         if (ricerca_contatti.val().length == 0) {
             $("#search-contact .fa-arrow-right").removeClass("active");
             $("#search-contact .fa-search").addClass("active");
+        } else {
+            ricerca_contatti.show().focus();
         }
     })
 
@@ -72,17 +74,28 @@ $(document).ready(function() {
         }
     })
 
-    //aggiungo azione all'evento mouse down sull'icona "esci dall'input e cancella valore input"
-    $("#search-contact .fa-arrow-right, #search-contact span").mousedown(function() {
+    //aggiungo azione all'evento mouse down sull'icona "cancella valore input"
+    $("#search-contact span").mousedown(function(event) {
+        //spossesso il mousedown delle sue funzioni per rimanere l'input attivo
+        event.preventDefault();
         //svuoto il valore dell'input
         ricerca_contatti.val("");
         //all'uscita dall'input mostro tutti i contatti
         $("#chat-container .chat").show();
         //rimuovo il display all'icona "rimuovi valore input"
         $("#search-contact span").removeClass("active");
-        //inverto il display alle icone sulla sinistra del display
+    })
+
+    $("#search-contact .fa-arrow-right").mousedown(function() {
+        //svuoto il valore dell'input
+        ricerca_contatti.val("");
+        //all'uscita dall'input mostro tutti i contatti
+        $("#chat-container .chat").show();
+        //inverto il display sulle icone alla sinistra dell'input
         $("#search-contact .fa-arrow-right").removeClass("active");
         $("#search-contact .fa-search").addClass("active");
+        //rimuovo il display all'icona "rimuovi valore input"
+        $("#search-contact span").removeClass("active");
     })
 
 
