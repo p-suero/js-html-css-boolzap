@@ -60,8 +60,6 @@ $(document).ready(function() {
         if (ricerca_contatti.val().trim().length == 0) {
             $("#search-contact .fa-arrow-right").removeClass("active");
             $("#search-contact .fa-search").addClass("active");
-        } else {
-            ricerca_contatti.show().focus();
         }
     })
 
@@ -84,6 +82,8 @@ $(document).ready(function() {
         $("#chat-container .chat").show();
         //rimuovo il display all'icona "rimuovi valore input"
         $("#search-contact span").removeClass("active");
+        //attivo il focus sull'input quando clicco l'icona "X" e l'input non è attivo
+        ricerca_contatti.show().focus()
     })
 
     $("#search-contact .fa-arrow-right").mousedown(function() {
