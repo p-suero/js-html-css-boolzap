@@ -56,8 +56,8 @@ $(document).ready(function() {
     })
 
     //ricambio quando l'input non è attivo
-    ricerca_contatti.blur(function(event) {
-        if (ricerca_contatti.val().length == 0) {
+    ricerca_contatti.blur(function() {
+        if (ricerca_contatti.val().trim().length == 0) {
             $("#search-contact .fa-arrow-right").removeClass("active");
             $("#search-contact .fa-search").addClass("active");
         } else {
@@ -67,7 +67,7 @@ $(document).ready(function() {
 
     //se c'e testo visualizzo il caratter "X" per eliminare il valore dell'input
     ricerca_contatti.keyup(function() {
-        if ($("#search-contact input").val().length > 0) {
+        if ($(this).val().trim().length > 0) {
             $("#search-contact span").addClass("active");
         } else {
             $("#search-contact span").removeClass("active");
