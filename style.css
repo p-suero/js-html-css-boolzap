@@ -154,6 +154,11 @@ body {
     margin: 0 10px;
 }
 
+#search-contact i {
+    width: 15px;
+    height: 15px;
+}
+
 #search-contact i,
 #search-contact span {
     display: none;
