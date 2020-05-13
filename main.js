@@ -120,7 +120,7 @@ $(document).ready(function() {
         //aggiungo il focus alla chat ora selezionata
         $(this).addClass("focus")
         //leggo il valore del data della chat selezionata
-        var data = $(this).attr("data-nome");
+        var data = $(this).data("nome");
 
 
         //aggiungo la classe active all'immagine in header-right corrispondente
@@ -129,7 +129,6 @@ $(document).ready(function() {
         $(".text-info h6[data-nome='" + data + "']").addClass("active");
         //aggiungo la classe active al box-chat corrispondente
         $("#message-container[data-nome='" + data + "']").addClass("active");
-
     })
 
 
