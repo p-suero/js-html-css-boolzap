@@ -4,7 +4,7 @@ $(document).ready(function() {
     //***************SETTO L'INPUT DEI MESSAGGI***************//
     //*******************************************************//
 
-    //attivo  l'icona d'invio messaggio al click dell'input
+    //attivo l'icona d'invio messaggio al click dell'input
     $("#text-input").keyup(function() {
         if ($("#text-input").val().trim().length > 0) {
             $(".icon-container .fa-microphone").removeClass("active");
@@ -19,7 +19,7 @@ $(document).ready(function() {
     $(".fa-paper-plane").mousedown(function(event) {
         //uso il prevent default per lasciare la barra input attiva
         event.preventDefault();
-        //aggiungo la funzione di invio messaggio
+        //aggiungo la funzione d'invio messaggio
         send_message();
     });
 
@@ -55,6 +55,7 @@ $(document).ready(function() {
                 }
             })
         } else {
+            //altrimenti mostro tutto
             $("#chat-container .chat").show();
         }
     })
@@ -92,7 +93,7 @@ $(document).ready(function() {
         $("#chat-container .chat").show();
         //rimuovo il display all'icona "rimuovi valore input"
         $("#search-contact span").removeClass("active");
-        //attivo il focus sull'input quando clicco l'icona "X" e l'input non è attivo
+        //attivo il focus sull'input quando clicco l'icona "X"
         ricerca_contatti.show().focus()
     })
 
@@ -124,7 +125,6 @@ $(document).ready(function() {
         $(this).addClass("focus");
         //leggo il valore del data della chat selezionata
         var data = $(this).data("nome");
-
         //aggiungo la classe active all'immagine in header-right corrispondente
         $(".photo-profile img[data-nome='" + data + "']").addClass("active");
         //aggiungo la classe active al nome corrispondente in header-right
@@ -218,6 +218,7 @@ $(document).ready(function() {
             //mostro tutti i contatti all'invio di un messaggio (questa serve per quando ho avviato una coversazione dopo una ricerca)
             if ($(".fa-arrow-right").is(":visible")) {
                 $(".chat").show();
+                //simulo un click sull'icona alla sinistra dell'input di ricerca per uscire da quest'ultimo
                 $(".fa-arrow-right").trigger("mousedown")
             }
         }
