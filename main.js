@@ -113,7 +113,7 @@ $(document).ready(function() {
     //**************************************************//
 
     //intercetto il click sulla chat (utilizzo la funzione on affinchè tenga conto delle chat che si aggiungono in cima alla lista, se inserito un messaggio)
-    $("#chat-container").on("click", ".chat", function() {
+    $(document).on("click", ".chat", function() {
         //rimuovo il focus alla chat già attiva
         $(".chat.focus").removeClass("focus")
         //creo una variabile con all'interno i selettori dell'immagine, nome-contatto e box-chat
@@ -144,6 +144,38 @@ $(document).ready(function() {
             chat_up()
         }
     });
+
+
+    //*****************ELIMINA CHAT*********************//
+    //*************************************************//
+
+    //intercetto il click dell'utente sullo chevron-down
+
+    $(document).on("click", ".fa-chevron-down", function() {
+
+        //se non è visibile apro quello corrente e chiudo tutti gli altri
+        if (!($(this).next(".dropdown-options").is(":visible"))) {
+            $(".dropdown-options").hide();
+            $(this).next(".dropdown-options").show();
+        } else {
+            //se è visibile lo chiudo
+            $(this).next(".dropdown-options").hide();
+        }
+    })
+
+    //al click dell'utente su qualsiasi parte della pagina chiudo il dropdown
+    $(document).click(function(event) {
+        var target = $(event.target);
+        if(!(target.is(".fa-chevron-down, .dropdown-options *"))) {
+            $(".dropdown-options").hide();
+        }
+    })
+
+    //al click di "elimina messaggio" questo verrà eliminato
+    $(document).on("click", ".message-destroy", function() {
+        //elimino il messaggio
+        $(this).closest(".text").remove();
+    })
 
 
     //********************FUNZIONI********************//
