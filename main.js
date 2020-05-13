@@ -105,6 +105,34 @@ $(document).ready(function() {
     })
 
 
+    //******************SELEZIONE CHAT*******************//
+    //**************************************************//
+
+    //intercetto il click sulla chat
+    $(".chat").click(function() {
+        //rimuovo il focus alla chat già attiva
+        $(".chat.focus").removeClass("focus")
+        //creo una variabile con all'interno i selettori dell'immagine, nome-contatto e box-chat
+        var elements = $(".photo-profile img, .text-info h6,#message-container");
+        //rimuovo il display agli elementi della variabile
+        elements.removeClass("active");
+
+        //aggiungo il focus alla chat ora selezionata
+        $(this).addClass("focus")
+        //leggo il valore del data della chat selezionata
+        var data = $(this).attr("data-nome");
+
+
+        //aggiungo la classe active all'immagine in header-right corrispondente
+        $(".photo-profile img[data-nome='" + data + "']").addClass("active");
+        //aggiungo la classe active al nome corrispondente in header-right
+        $(".text-info h6[data-nome='" + data + "']").addClass("active");
+        //aggiungo la classe active al box-chat corrispondente
+        $("#message-container[data-nome='" + data + "']").addClass("active");
+
+    })
+
+
     //********************FUNZIONI********************//
     //***********************************************//
 
@@ -123,7 +151,7 @@ $(document).ready(function() {
             //aggiungo l'ora del sistema al tag
             new_message.children(".time-text").text(myFunction());
             //inserisco il tag nel html
-            $("#message-container").append(new_message);
+            $("#message-container.active").append(new_message);
             //svuoto il contenuto dell'input
             $("#text-input").val("");
             //elimino la classe active all'icona d'inviato
@@ -152,7 +180,7 @@ $(document).ready(function() {
         //aggiungo l'ora del sistema al tag
         new_message.children(".time-text").text(myFunction());
         //inserisco il tag nel html
-        $("#message-container").append(new_message);
+        $("#message-container.active").append(new_message);
     }
 
     //funzione per il recupero dell'ora di sistema

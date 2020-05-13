@@ -52,7 +52,7 @@
                 </div>
                 <!-- contenitore delle chat -->
                 <div id="chat-container" class="cursor">
-                    <div class="chat">
+                    <div class="chat focus" data-nome="a1">
                         <div class="img-chat img-container">
                             <img src="img/first-avatar.png" alt="">
                         </div>
@@ -66,7 +66,7 @@
                             12:54
                         </p>
                     </div>
-                    <div class="chat">
+                    <div class="chat" data-nome="a2">
                         <div class="img-chat img-container">
                             <img src="img/second-avatar.png" alt="">
                         </div>
@@ -80,7 +80,7 @@
                             12:54
                         </p>
                     </div>
-                    <div class="chat">
+                    <div class="chat" data-nome="a3">
                         <div class="img-chat img-container">
                             <img src="img/third-avatar.png" alt="">
                         </div>
@@ -94,7 +94,7 @@
                             12:54
                         </p>
                     </div>
-                    <div class="chat">
+                    <div class="chat" data-nome="a4">
                         <div class="img-chat img-container">
                             <img src="img/fourth-avatar.png" alt="">
                         </div>
@@ -108,7 +108,7 @@
                             12:54
                         </p>
                     </div>
-                    <div class="chat">
+                    <div class="chat" data-nome="a5">
                         <div class="img-chat img-container">
                             <img src="img/fifth-avatar.png" alt="">
                         </div>
@@ -122,7 +122,7 @@
                             12:54
                         </p>
                     </div>
-                    <div class="chat">
+                    <div class="chat" data-nome="a6">
                         <div class="img-chat img-container">
                             <img src="img/sixth-avatar.png" alt="">
                         </div>
@@ -136,7 +136,7 @@
                             12:54
                         </p>
                     </div>
-                    <div class="chat">
+                    <div class="chat" data-nome="a7">
                         <div class="img-chat img-container">
                             <img src="img/seventh-avatar.png" alt="">
                         </div>
@@ -150,7 +150,7 @@
                             12:54
                         </p>
                     </div>
-                    <div class="chat">
+                    <div class="chat" data-nome="a8">
                         <div class="img-chat img-container">
                             <img src="img/eighth-avatar.png" alt="">
                         </div>
@@ -164,7 +164,7 @@
                             12:54
                         </p>
                     </div>
-                    <div class="chat">
+                    <div class="chat" data-nome="a9">
                         <div class="img-chat img-container">
                             <img src="img/nineth-avatar.png" alt="">
                         </div>
@@ -178,7 +178,7 @@
                             12:54
                         </p>
                     </div>
-                    <div class="chat">
+                    <div class="chat" data-nome="a10">
                         <div class="img-chat img-container">
                             <img src="img/tenth-avatar.png" alt="">
                         </div>
@@ -192,7 +192,7 @@
                             12:54
                         </p>
                     </div>
-                    <div class="chat">
+                    <div class="chat" data-nome="a11">
                         <div class="img-chat img-container">
                             <img src="img/eleventh-avatar.jpg" alt="">
                         </div>
@@ -206,7 +206,7 @@
                             12:54
                         </p>
                     </div>
-                    <div class="chat">
+                    <div class="chat" data-nome="a12">
                         <div class="img-chat img-container">
                             <img src="img/twelveth-avatar.png" alt="">
                         </div>
@@ -227,10 +227,32 @@
                 <div id="header-right" class="header padding-fix bk-color-grey">
                     <div class="contact-info-container cursor">
                         <div class="photo-profile img-container">
-                            <img src="img/first-avatar.png" alt="">
+                            <img src="img/first-avatar.png" alt="" data-nome="a1" class="active">
+                            <img src="img/second-avatar.png" alt="" data-nome="a2">
+                            <img src="img/third-avatar.png" alt="" data-nome="a3">
+                            <img src="img/fourth-avatar.png" alt="" data-nome="a4">
+                            <img src="img/fifth-avatar.png" alt="" data-nome="a5">
+                            <img src="img/sixth-avatar.png" alt="" data-nome="a6">
+                            <img src="img/seventh-avatar.png" alt="" data-nome="a7">
+                            <img src="img/eighth-avatar.png" alt="" data-nome="a8">
+                            <img src="img/nineth-avatar.png" alt="" data-nome="a9">
+                            <img src="img/tenth-avatar.png" alt="" data-nome="a10">
+                            <img src="img/eleventh-avatar.jpg" alt="" data-nome="a11">
+                            <img src="img/twelveth-avatar.png" alt="" data-nome="a12">
                         </div>
                         <div class="text-info">
-                            <h6>Leonardo</h6>
+                            <h6 data-nome="a1" class="active">Leonardo</h6>
+                            <h6 data-nome="a2">Viviana</h6>
+                            <h6 data-nome="a3">Vincenzo</h6>
+                            <h6 data-nome="a4">Orsola</h6>
+                            <h6 data-nome="a5">Carmela</h6>
+                            <h6 data-nome="a6">Marco</h6>
+                            <h6 data-nome="a7">Ludovica</h6>
+                            <h6 data-nome="a8">Paolo</h6>
+                            <h6 data-nome="a9">Joseph</h6>
+                            <h6 data-nome="a10">Anna</h6>
+                            <h6 data-nome="a11">Giancarlo</h6>
+                            <h6 data-nome="a12">Emanuela</h6>
                             <p>
                                 Ultimo accesso oggi alle 15.40
                             </p>
@@ -243,7 +265,7 @@
                     </div>
                 </div>
                 <!-- messaggi della chat aperta -->
-                <div id="message-container" class="clearfix">
+                <div id="message-container" class="clearfix active" data-nome="a1">
                     <div class="text sent read">
                         <p>
                             Ciao, come va?
@@ -305,6 +327,18 @@
                         <p class="time-text">15.27</p>
                     </div>
                 </div>
+                <div id="message-container" class="clearfix" data-nome="a2"></div>
+                <div id="message-container" class="clearfix" data-nome="a3"></div>
+                <div id="message-container" class="clearfix" data-nome="a4"></div>
+                <div id="message-container" class="clearfix" data-nome="a5"></div>
+                <div id="message-container" class="clearfix" data-nome="a6"></div>
+                <div id="message-container" class="clearfix" data-nome="a7"></div>
+                <div id="message-container" class="clearfix" data-nome="a8"></div>
+                <div id="message-container" class="clearfix" data-nome="a9"></div>
+                <div id="message-container" class="clearfix" data-nome="a10"></div>
+                <div id="message-container" class="clearfix" data-nome="a11"></div>
+                <div id="message-container" class="clearfix" data-nome="a12"></div>
+
                 <!-- barra di input della chat aperta -->
                 <div id="footer-right" class="padding-fix bk-color-grey">
                     <i class="far fa-grin cursor"></i>
