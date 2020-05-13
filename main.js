@@ -16,7 +16,12 @@ $(document).ready(function() {
     });
 
     //invio il messaggio al click dell'icona
-    $(".fa-paper-plane").click(send_message);
+    $(".fa-paper-plane").mousedown(function(event) {
+        //uso il prevent default per lasciare la barra input attiva
+        event.preventDefault();
+        //aggiungo la funzione di invio messaggio
+        send_message();
+    });
 
     //invio il messaggio al click del tasto "enter"
     $("#text-input").keypress(function(e) {
@@ -52,7 +57,6 @@ $(document).ready(function() {
         } else {
             $("#chat-container .chat").show();
         }
-
     })
 
     //cambio l'icona di fianco l'input quando questo è attivo
@@ -133,9 +137,7 @@ $(document).ready(function() {
     })
 
     //sposto la chat in cima alla lista se viene inviato un messaggio
-    $(".fa-paper-plane").click(function() {
-        chat_up();
-    });
+    $(".fa-paper-plane").click(chat_up)
 
     $("#text-input").keypress(function(e) {
         if(e.which == 13) {
@@ -177,6 +179,12 @@ $(document).ready(function() {
 
             //faccio partire il timer per la risposta
             setTimeout(risposta_pc, 2000);
+
+            //mostro tutti i contatti all'invio di un messaggio (questa serve per quando ho avviato una coversazione dopo una ricerca)
+            if ($(".fa-arrow-right").is(":visible")) {
+                $(".chat").show();
+                $(".fa-arrow-right").trigger("mousedown")
+            }
         }
     }
 
@@ -218,7 +226,7 @@ $(document).ready(function() {
         //se nella chat è stato inserito un messaggio eseguo la scalata
         if ($("#message-container.active *").hasClass("text")) {
             //clono la chat attiva in quel momento
-            var chat_selezionata = $(".chat").clone();
+            var chat_selezionata = $(".chat.focus").clone();
             //la rimuovo dal posto in cui risiede
             $(".chat.focus").remove();
             //la inserisco in cima alla lista
