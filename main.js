@@ -120,13 +120,10 @@ $(document).ready(function() {
         var elements = $(".photo-profile img, .text-info h6, #message-container");
         //rimuovo il display agli elementi della variabile
         elements.removeClass("active");
-
         //aggiungo il focus alla chat ora selezionata
         $(this).addClass("focus");
-
         //leggo il valore del data della chat selezionata
         var data = $(this).data("nome");
-
 
         //aggiungo la classe active all'immagine in header-right corrispondente
         $(".photo-profile img[data-nome='" + data + "']").addClass("active");
@@ -136,7 +133,7 @@ $(document).ready(function() {
         $("#message-container[data-nome='" + data + "']").addClass("active");
     })
 
-    //sposto la chat in cima alla lista se viene inviato un messaggio
+    //sposto la chat in cima alla lista quando viene inviato un messaggio
     $(".fa-paper-plane").click(chat_up)
 
     $("#text-input").keypress(function(e) {
@@ -145,12 +142,14 @@ $(document).ready(function() {
         }
     });
 
+    //inserisco l'ora del sistema nell'ultimo accesso
+    $(".time, .last-access span").text(time())
+
 
     //*****************ELIMINA CHAT*********************//
     //*************************************************//
 
     //intercetto il click dell'utente sullo chevron-down
-
     $(document).on("click", ".fa-chevron-down", function() {
 
         //se non è visibile apro quello corrente e chiudo tutti gli altri
@@ -194,23 +193,27 @@ $(document).ready(function() {
             //aggiungo il testo al tag
             new_message.children("p:first-child").text(text_input);
             //aggiungo l'ora del sistema al tag
-            new_message.children(".time-text").text(myFunction());
+            new_message.children(".time-text").text(time());
             //inserisco il tag nel html
             $("#message-container.active").append(new_message);
             //svuoto il contenuto dell'input
             $("#text-input").val("");
-            //elimino la classe active all'icona d'inviato
-            $(".icon-container .fa-paper-plane").removeClass("active");
-            //aggiungo la classe active al microfono
-            $(".icon-container .fa-microphone").addClass("active");
+
+            //se l'icona d'invio messaggio resta visibile, la nascondo
+            if ($(".icon-container .fa-paper-plane").is(":visible")) {
+                //elimino la classe active all'icona d'inviato
+                $(".icon-container .fa-paper-plane").removeClass("active");
+                //aggiungo la classe active al microfono
+                $(".icon-container .fa-microphone").addClass("active");
+            }
 
             //setto la spunta blu
             setTimeout(function() {
                 $("div:last-child .sent").addClass("read");
-            }, 1000)
+            }, 500)
 
             //faccio partire il timer per la risposta
-            setTimeout(risposta_pc, 2000);
+            setTimeout(risposta_pc, 1000);
 
             //mostro tutti i contatti all'invio di un messaggio (questa serve per quando ho avviato una coversazione dopo una ricerca)
             if ($(".fa-arrow-right").is(":visible")) {
@@ -229,13 +232,13 @@ $(document).ready(function() {
         //aggiungo il testo al tag
         new_message.children("p:first-child").text("ok");
         //aggiungo l'ora del sistema al tag
-        new_message.children(".time-text").text(myFunction());
+        new_message.children(".time-text").text(time());
         //inserisco il tag nel html
         $("#message-container.active").append(new_message);
     }
 
     //funzione per il recupero dell'ora di sistema
-    function myFunction() {
+    function time() {
       var date = new Date();
       var hours = date.getHours();
       var minutes = date.getMinutes();
@@ -246,16 +249,16 @@ $(document).ready(function() {
       return time
     }
 
-    //funzione per l'auto-scroll
-    function auto_scroll() {
-        var altezzaChat = $(".page-right").height();
-        $("#message-container").animate({
-            scrollTop: altezzaChat
-        }, "fast");
-    }
+    // //funzione per l'auto-scroll
+    // function auto_scroll() {
+    //     var altezzaChat = $(".page-right").height();
+    //     $("#message-container").animate({
+    //         scrollTop: altezzaChat
+    //     }, "fast");
+    // }
 
     function chat_up() {
-        //se nella chat è stato inserito un messaggio eseguo la scalata
+        //se nella chat è stato inserito un messaggio, mello la chat in cima
         if ($("#message-container.active *").hasClass("text")) {
             //clono la chat attiva in quel momento
             var chat_selezionata = $(".chat.focus").clone();
