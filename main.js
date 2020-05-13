@@ -108,17 +108,18 @@ $(document).ready(function() {
     //******************SELEZIONE CHAT*******************//
     //**************************************************//
 
-    //intercetto il click sulla chat
-    $(".chat").click(function() {
+    //intercetto il click sulla chat (utilizzo la funzione on affinchè tenga conto delle chat che si aggiungono in cima alla lista, se inserito un messaggio)
+    $("#chat-container").on("click", ".chat", function() {
         //rimuovo il focus alla chat già attiva
         $(".chat.focus").removeClass("focus")
         //creo una variabile con all'interno i selettori dell'immagine, nome-contatto e box-chat
-        var elements = $(".photo-profile img, .text-info h6,#message-container");
+        var elements = $(".photo-profile img, .text-info h6, #message-container");
         //rimuovo il display agli elementi della variabile
         elements.removeClass("active");
 
         //aggiungo il focus alla chat ora selezionata
-        $(this).addClass("focus")
+        $(this).addClass("focus");
+
         //leggo il valore del data della chat selezionata
         var data = $(this).data("nome");
 
@@ -130,6 +131,17 @@ $(document).ready(function() {
         //aggiungo la classe active al box-chat corrispondente
         $("#message-container[data-nome='" + data + "']").addClass("active");
     })
+
+    //sposto la chat in cima alla lista se viene inviato un messaggio
+    $(".fa-paper-plane").click(function() {
+        chat_up();
+    });
+
+    $("#text-input").keypress(function(e) {
+        if(e.which == 13) {
+            chat_up()
+        }
+    });
 
 
     //********************FUNZIONI********************//
@@ -200,5 +212,17 @@ $(document).ready(function() {
         $("#message-container").animate({
             scrollTop: altezzaChat
         }, "fast");
+    }
+
+    function chat_up() {
+        //se nella chat è stato inserito un messaggio eseguo la scalata
+        if ($("#message-container.active *").hasClass("text")) {
+            //clono la chat attiva in quel momento
+            var chat_selezionata = $(".chat").clone();
+            //la rimuovo dal posto in cui risiede
+            $(".chat.focus").remove();
+            //la inserisco in cima alla lista
+            $("#chat-container").prepend(chat_selezionata);
+        }
     }
 });
