@@ -36,18 +36,23 @@ $(document).ready(function() {
     ricerca_contatti.keyup(function () {
         //recupro il valore dell'input inserito dall'utente
         var input_search = ricerca_contatti.val().trim().toUpperCase();
+        //se l'input ha caratteri faccio il controllo
+        if (ricerca_contatti.val().length > 0) {
+            //ciclo i singoli contatti
+            $("#chat-container .chat").each(function() {
+                //recupero il titolo del contatto
+                var nome_contatto = $(this).find("h5").text().toUpperCase();
+                //se ho un contatto uguale all' intero o parziale valore dell'utente mostro il contatto altrimenti lo nascondo
+                if (nome_contatto.includes(input_search)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            })
+        } else {
+            $("#chat-container .chat").show();
+        }
 
-        //ciclo i singoli contatti
-        $("#chat-container .chat").each(function() {
-            //recupero il titolo del contatto
-            var nome_contatto = $(this).find("h5").text().toUpperCase();
-            //se ho un contatto uguale all' intero o parziale valore dell'utente mostro il contatto altrimenti lo nascondo
-            if (nome_contatto.includes(input_search)) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        })
     })
 
     //cambio l'icona di fianco l'input quando questo è attivo
@@ -104,7 +109,7 @@ $(document).ready(function() {
     //***********************************************//
 
     //creo una funzione che inserisce un nuovo elemento all'interno del html partendo dal template
-    function send_message () {
+    function send_message() {
         //valido l'input
         if ($("#text-input").val().trim().length > 0) {
             //leggo il valore dell'input
@@ -137,7 +142,7 @@ $(document).ready(function() {
     }
 
     //funzione che mi restituisce una risposta
-    function risposta_pc () {
+    function risposta_pc() {
         //clono l'elemento nel template
         var new_message = $(".template .text").clone();
         //aggiungo la classe "messaggio inviato"
