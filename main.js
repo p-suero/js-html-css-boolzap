@@ -132,19 +132,22 @@ $(document).ready(function() {
             }, 1000)
 
             //faccio partire il timer per la risposta
-            setTimeout(function () {
-                //clono l'elemento nel template
-                var new_message = $(".template .text").clone();
-                //aggiungo la classe "messaggio inviato"
-                new_message.addClass("received")
-                //aggiungo il testo al tag
-                new_message.children("p:first-child").text("ok");
-                //aggiungo l'ora del sistema al tag
-                new_message.children(".time-text").text(myFunction());
-                //inserisco il tag nel html
-                $("#message-container").append(new_message);
-            }, 2000);
+            setTimeout(risposta_pc, 2000);
         }
+    }
+
+    //funzione che mi restituisce una risposta
+    function risposta_pc () {
+        //clono l'elemento nel template
+        var new_message = $(".template .text").clone();
+        //aggiungo la classe "messaggio inviato"
+        new_message.addClass("received")
+        //aggiungo il testo al tag
+        new_message.children("p:first-child").text("ok");
+        //aggiungo l'ora del sistema al tag
+        new_message.children(".time-text").text(myFunction());
+        //inserisco il tag nel html
+        $("#message-container").append(new_message);
     }
 
     //funzione per il recupero dell'ora di sistema
