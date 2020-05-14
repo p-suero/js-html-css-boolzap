@@ -138,31 +138,23 @@ $(document).ready(function() {
         $("#header-right .text-info h6").text(titolo_contatto);
     })
 
-    //inserisco l'ora del sistema nell'ultimo accesso
-    $(".chat .time, .last-access span").text(time())
-
 
     //*****************ELIMINA CHAT*********************//
     //*************************************************//
 
     //intercetto il click dell'utente sullo chevron-down
     $(".message-container").on("click", ".fa-chevron-down", function() {
-
-        //se non è visibile apro quello corrente e chiudo tutti gli altri
-        if (!($(this).next(".dropdown-options").is(":visible"))) {
-            $(".dropdown-options").hide();
-            $(this).next(".dropdown-options").show();
-        } else {
-            //se è visibile lo chiudo
-            $(this).next(".dropdown-options").hide();
-        }
+        //rimuovo la classe al dropdown attivo
+        $(".dropdown-options.active").removeClass("active");
+        //aggiungo o elimino la classe "active" al dropdown corrente
+        $(this).next(".dropdown-options").toggleClass("active");
     })
 
     //al click dell'utente su qualsiasi parte della pagina chiudo il dropdown
     $(document).click(function(event) {
         var target = $(event.target);
         if(!(target.is(".fa-chevron-down, .dropdown-options *"))) {
-            $(".dropdown-options").hide();
+            $(".dropdown-options").removeClass("active");
         }
     })
 
@@ -172,6 +164,15 @@ $(document).ready(function() {
         $(this).closest(".text").remove();
     })
 
+
+    //*****************SETTAGGI ACCESSORI***************//
+    //*************************************************//
+
+    //faccio lo scroll verso l'alto della pagina
+
+
+    //inserisco l'ora del sistema nell'ultimo accesso
+    $(".chat .time, .last-access span").text(time())
 
     //********************FUNZIONI********************//
     //***********************************************//

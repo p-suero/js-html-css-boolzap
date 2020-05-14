@@ -377,6 +377,10 @@ body {
     background-color: rgba(48, 48, 48, 0.3);
 }
 
+.dropdown-options.active {
+    display: block;
+}
+
 /* selettori footer */
 #footer-right {
     height: 50px;
