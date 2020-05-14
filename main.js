@@ -21,12 +21,16 @@ $(document).ready(function() {
         event.preventDefault();
         //aggiungo la funzione d'invio messaggio
         send_message();
+        //scalo la chat al primo posto all'invio del messaggio
+        chat_up();
     });
 
     //invio il messaggio al click del tasto "enter"
     $("#text-input").keypress(function(e) {
         if(e.which == 13) {
             send_message();
+            //scalo la chat al primo posto all'invio del messaggio
+            chat_up();
         }
     });
 
@@ -93,8 +97,10 @@ $(document).ready(function() {
         $("#chat-container .chat").show();
         //rimuovo il display all'icona "rimuovi valore input"
         $("#search-contact span").removeClass("active");
-        //attivo il focus sull'input quando clicco l'icona "X"
-        ricerca_contatti.show().focus()
+        //se l' input non è attivo al click della "X" riattivo questo
+        if (!(ricerca_contatti.is(":focus"))) {
+            ricerca_contatti.show().focus();
+        }
     })
 
     $("#search-contact .fa-arrow-right").mousedown(function() {
@@ -117,33 +123,26 @@ $(document).ready(function() {
     $(document).on("click", ".chat", function() {
         //rimuovo il focus alla chat già attiva
         $(".chat.focus").removeClass("focus")
-        //creo una variabile con all'interno i selettori dell'immagine, nome-contatto e box-chat
-        var elements = $(".photo-profile img, .text-info h6, #message-container");
-        //rimuovo il display agli elementi della variabile
-        elements.removeClass("active");
+        //rimuovo il display alla chat aperta
+        $("#message-container.active").removeClass("active");
         //aggiungo il focus alla chat ora selezionata
         $(this).addClass("focus");
         //leggo il valore del data della chat selezionata
         var data = $(this).data("nome");
-        //aggiungo la classe active all'immagine in header-right corrispondente
-        $(".photo-profile img[data-nome='" + data + "']").addClass("active");
-        //aggiungo la classe active al nome corrispondente in header-right
-        $(".text-info h6[data-nome='" + data + "']").addClass("active");
         //aggiungo la classe active al box-chat corrispondente
         $("#message-container[data-nome='" + data + "']").addClass("active");
+        //recupero l'immagine di profilo del contatto
+        var image = $(this).find("img").attr("src");
+        //aggiungo l'immagine nell'intestazione della conversazione
+        $("#header-right .photo-profile img").attr("src", image);
+        //recupero il nome del nome del contatto
+        var nome = $(this).find("h5").text();
+        //aggiungo il nome nell'intestazioe della conversazione
+        $("#header-right .text-info h6").text(nome);
     })
 
-    //sposto la chat in cima alla lista quando viene inviato un messaggio
-    $(".fa-paper-plane").click(chat_up)
-
-    $("#text-input").keypress(function(e) {
-        if(e.which == 13) {
-            chat_up()
-        }
-    });
-
     //inserisco l'ora del sistema nell'ultimo accesso
-    $(".time, .last-access span").text(time())
+    $(".last-access span").text(time())
 
 
     //*****************ELIMINA CHAT*********************//

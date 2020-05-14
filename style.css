@@ -235,14 +235,6 @@ body {
 }
 
 /* selettori header-right */
-#header-right img {
-    display: none;
-}
-
-#header-right img.active {
-    display: inline-block
-}
-
 .contact-info-container {
     display: flex;
     align-items: center;
@@ -257,12 +249,8 @@ body {
     font-size: 14px;
     color: black;
     line-height: 15px;
-    display: none;
 }
 
-.text-info h6.active {
-    display: block;
-}
 
 /* selettori messaggio */
 #message-container {
