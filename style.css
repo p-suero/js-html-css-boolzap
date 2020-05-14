@@ -228,7 +228,7 @@ body {
     overflow-x: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 90%;
+    width: 100%;
 }
 
 .time {
