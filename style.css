@@ -253,7 +253,7 @@ body {
 
 
 /* selettori messaggio */
-#message-container {
+.message-container {
     height: calc(100% - 95px);
     background-image: url(img/background.jpg);
     background-size: contain;
@@ -262,7 +262,7 @@ body {
     display: none;
 }
 
-#message-container.active {
+.message-container.active {
     display: block;
 }
 

@@ -21,8 +21,6 @@ $(document).ready(function() {
         event.preventDefault();
         //aggiungo la funzione d'invio messaggio
         send_message();
-        //scalo la chat al primo posto all'invio del messaggio
-        chat_up();
     });
 
     //invio il messaggio al click del tasto "enter"
@@ -30,8 +28,6 @@ $(document).ready(function() {
         if(e.which == 13) {
             //aggiungo la funzione di invio messaggio
             send_message();
-            //scalo la chat al primo posto all'invio del messaggio
-            chat_up();
         }
     });
 
@@ -125,13 +121,13 @@ $(document).ready(function() {
         //rimuovo il focus alla chat già attiva
         $(".chat.focus").removeClass("focus")
         //rimuovo il display alla chat aperta
-        $("#message-container.active").removeClass("active");
+        $(".message-container.active").removeClass("active");
         //aggiungo il focus alla chat ora selezionata
         $(this).addClass("focus");
         //leggo il valore del data della chat selezionata
         var data = $(this).data("nome");
         //aggiungo la classe active al box-chat corrispondente
-        $("#message-container[data-nome='" + data + "']").addClass("active");
+        $(".message-container[data-nome='" + data + "']").addClass("active");
         //recupero l'immagine di profilo del contatto
         var immagine = $(this).find("img").attr("src");
         //aggiungo l'immagine nell'intestazione della conversazione
@@ -195,9 +191,15 @@ $(document).ready(function() {
             //aggiungo l'ora del sistema al tag
             nuovo_msg.children(".time-text").text(time());
             //inserisco il tag nel html
-            $("#message-container.active").append(nuovo_msg);
+            $(".message-container.active").append(nuovo_msg);
             //svuoto il contenuto dell'input
             $("#text-input").val("");
+            //clono la chat attiva in quel momento
+            var chat_selezionata = $(".chat.focus").clone();
+            //la rimuovo dal posto in cui risiede
+            $(".chat.focus").remove();
+            //la inserisco in cima alla lista
+            $("#chat-container").prepend(chat_selezionata);
 
             //se l'icona d'invio messaggio resta visibile, la nascondo
             if ($(".icon-container .fa-paper-plane").is(":visible")) {
@@ -215,9 +217,8 @@ $(document).ready(function() {
             //faccio partire il timer per la risposta
             setTimeout(risposta_pc, 1000);
 
-            //mostro tutti i contatti all'invio di un messaggio (questa serve per quando ho avviato una coversazione dopo una ricerca)
+            //se avvio una ricerca e subito dopo invio un messaggio , mostro tutti i contatti ed esco dalla ricerca
             if ($(".fa-arrow-right").is(":visible")) {
-                $(".chat").show();
                 //simulo un click sull'icona alla sinistra dell'input di ricerca per uscire da quest'ultimo
                 $(".fa-arrow-right").trigger("mousedown")
             }
@@ -235,7 +236,7 @@ $(document).ready(function() {
         //aggiungo l'ora del sistema al tag
         risposta_msg.children(".time-text").text(time());
         //inserisco il tag nel html
-        $("#message-container.active").append(risposta_msg);
+        $(".message-container.active").append(risposta_msg);
     }
 
     //funzione per il recupero dell'ora di sistema
@@ -248,25 +249,5 @@ $(document).ready(function() {
       }
       var ora = hours + ":" + minutes;
       return ora
-    }
-
-    // //funzione per l'auto-scroll
-    // function auto_scroll() {
-    //     var altezzaChat = $(".page-right").height();
-    //     $("#message-container").animate({
-    //         scrollTop: altezzaChat
-    //     }, "fast");
-    // }
-
-    function chat_up() {
-        //se nella chat è stato inserito un messaggio, mello la chat in cima
-        if ($("#message-container.active *").hasClass("text")) {
-            //clono la chat attiva in quel momento
-            var chat_selezionata = $(".chat.focus").clone();
-            //la rimuovo dal posto in cui risiede
-            $(".chat.focus").remove();
-            //la inserisco in cima alla lista
-            $("#chat-container").prepend(chat_selezionata);
-        }
     }
 });
