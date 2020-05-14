@@ -137,9 +137,9 @@ $(document).ready(function() {
         //aggiungo l'immagine nell'intestazione della conversazione
         $("#header-right .photo-profile img").attr("src", immagine);
         //recupero il nome del nome del contatto
-        var nome = $(this).find("h5").text();
+        var titolo_contatto = $(this).find("h5").text();
         //aggiungo il nome nell'intestazioe della conversazione
-        $("#header-right .text-info h6").text(nome);
+        $("#header-right .text-info h6").text(titolo_contatto);
     })
 
     //inserisco l'ora del sistema nell'ultimo accesso
@@ -171,7 +171,7 @@ $(document).ready(function() {
     })
 
     //al click di "elimina messaggio" questo verrà eliminato
-    $(document).on("click", ".message-destroy", function() {
+    $(document).on("click", ".message-delate", function() {
         //elimino il messaggio
         $(this).closest(".text").remove();
     })
@@ -185,17 +185,17 @@ $(document).ready(function() {
         //valido l'input
         if ($("#text-input").val().trim().length > 0) {
             //leggo il valore dell'input
-            var text_input = $("#text-input").val();
+            var valore_input = $("#text-input").val();
             //clono l'elemento nel template
-            var new_message = $(".template .text").clone();
+            var nuovo_msg = $(".template .text").clone();
             //aggiungo la classe messaggio da inviare
-            new_message.addClass("sent");
+            nuovo_msg.addClass("sent");
             //aggiungo il testo al tag
-            new_message.children("p:first-child").text(text_input);
+            nuovo_msg.children("p:first-child").text(valore_input);
             //aggiungo l'ora del sistema al tag
-            new_message.children(".time-text").text(time());
+            nuovo_msg.children(".time-text").text(time());
             //inserisco il tag nel html
-            $("#message-container.active").append(new_message);
+            $("#message-container.active").append(nuovo_msg);
             //svuoto il contenuto dell'input
             $("#text-input").val("");
 
@@ -227,15 +227,15 @@ $(document).ready(function() {
     //funzione che mi restituisce una risposta
     function risposta_pc() {
         //clono l'elemento nel template
-        var new_message = $(".template .text").clone();
+        var risposta_msg = $(".template .text").clone();
         //aggiungo la classe "messaggio inviato"
-        new_message.addClass("received")
+        risposta_msg.addClass("received")
         //aggiungo il testo al tag
-        new_message.children("p:first-child").text("ok");
+        risposta_msg.children("p:first-child").text("ok");
         //aggiungo l'ora del sistema al tag
-        new_message.children(".time-text").text(time());
+        risposta_msg.children(".time-text").text(time());
         //inserisco il tag nel html
-        $("#message-container.active").append(new_message);
+        $("#message-container.active").append(risposta_msg);
     }
 
     //funzione per il recupero dell'ora di sistema
