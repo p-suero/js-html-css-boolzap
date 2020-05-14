@@ -147,11 +147,11 @@ $(document).ready(function() {
     $(".message-container").on("click", ".fa-chevron-down", function() {
         //se non è visibile apro quello corrente e chiudo tutti gli altri
         if (!($(this).next(".dropdown-options").is(":visible"))) {
-            $(".dropdown-options").hide();
-            $(this).next(".dropdown-options").show();
+            $(".dropdown-options").removeClass("active");
+            $(this).next(".dropdown-options").addClass("active");
         } else {
             //se è visibile lo chiudo
-            $(this).next(".dropdown-options").hide();
+            $(this).next(".dropdown-options").removeClass("active");
         }
     })
 
@@ -159,7 +159,7 @@ $(document).ready(function() {
     $(document).click(function(event) {
         var target = $(event.target);
         if(!(target.is(".fa-chevron-down, .dropdown-options *"))) {
-            $(".dropdown-options").removeClass("active");
+            $(".dropdown-options.active").removeClass("active");
         }
     })
 
