@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 
-    //***************SETTO L'INPUT DEI MESSAGGI***************//
+     //**************MINESTONE 1 (input-messaggio)************//
     //*******************************************************//
 
     //attivo l'icona d'invio messaggio al click dell'input
@@ -32,7 +32,7 @@ $(document).ready(function() {
     });
 
 
-    //****************BARRA RICERCA CHAT****************//
+     //*******MINESTONE 2 (ricerca-contatto)*************//
     //*************************************************//
 
     //variabile contenente il selettore input della ricerca contatti
@@ -112,7 +112,7 @@ $(document).ready(function() {
     })
 
 
-    //******************SELEZIONE CHAT*******************//
+     //**********MINESTONE 3 (seleziona-chat)************//
     //**************************************************//
 
     //intercetto il click sulla chat (utilizzo la funzione on affinchè tenga conto delle chat che si aggiungono in cima alla lista, se inserito un messaggio)
@@ -138,7 +138,7 @@ $(document).ready(function() {
     })
 
 
-    //*****************ELIMINA CHAT*********************//
+     //************MINESTONE 3 (elimina-chat)***********//
     //*************************************************//
 
 
@@ -170,10 +170,7 @@ $(document).ready(function() {
         anteprima_chat();
     })
 
-
-    //*****************SETTAGGI ACCESSORI***************//
-    //*************************************************//
-
+    //********settaggi accessori*******//
     //all'apertura della pagina faccio lo scroll della pagina
     scrollauto();
 
@@ -230,7 +227,7 @@ $(document).ready(function() {
             }
 
 
-            //**************RISPOSTA PC *************//
+             //********Minestone 2 (risposta-pc)*****//
             //**************************************//
 
             //seleziono l'anteprima della chat

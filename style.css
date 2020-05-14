@@ -192,7 +192,7 @@ body {
 
 .chat {
     height: 65px;
-    border-top: 1px solid rgb(237, 237, 237);
+    border-bottom: 1px solid rgb(237, 237, 237);
     display: flex;
     align-items: center;
     position: relative;
