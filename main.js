@@ -67,9 +67,9 @@ $(document).ready(function() {
         $("#search-contact .fa-arrow-right").addClass("active");
     })
 
-    //ricambio quando l'input non è attivo
+    //ricambio quando l'input non è attivo (utilizzo la funzione event.target per settare il click degli elementi al di fuori dell'input)
     $(document).click(function(event) {
-        var target = $(event.target)
+        var target = $(event.target);
         if (!(target.is(".input-container *"))) {
             if (ricerca_contatti.val().trim().length == 0) {
                 $("#search-contact .fa-arrow-right").removeClass("active");
