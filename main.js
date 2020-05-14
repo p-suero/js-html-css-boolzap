@@ -142,12 +142,17 @@ $(document).ready(function() {
     //*****************ELIMINA CHAT*********************//
     //*************************************************//
 
+
     //intercetto il click dell'utente sullo chevron-down
     $(".message-container").on("click", ".fa-chevron-down", function() {
-        //rimuovo la classe al dropdown attivo
-        $(".dropdown-options.active").removeClass("active");
-        //aggiungo o elimino la classe "active" al dropdown corrente
-        $(this).next(".dropdown-options").toggleClass("active");
+        //se non è visibile apro quello corrente e chiudo tutti gli altri
+        if (!($(this).next(".dropdown-options").is(":visible"))) {
+            $(".dropdown-options").hide();
+            $(this).next(".dropdown-options").show();
+        } else {
+            //se è visibile lo chiudo
+            $(this).next(".dropdown-options").hide();
+        }
     })
 
     //al click dell'utente su qualsiasi parte della pagina chiudo il dropdown
