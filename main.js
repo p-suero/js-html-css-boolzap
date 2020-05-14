@@ -28,6 +28,7 @@ $(document).ready(function() {
     //invio il messaggio al click del tasto "enter"
     $("#text-input").keypress(function(e) {
         if(e.which == 13) {
+            //aggiungo la funzione di invio messaggio
             send_message();
             //scalo la chat al primo posto all'invio del messaggio
             chat_up();
@@ -44,7 +45,7 @@ $(document).ready(function() {
     //creo un evento alla pressione di un pulsante della tastiera sull'input
     ricerca_contatti.keyup(function () {
         //recupro il valore dell'input inserito dall'utente
-        var input_search = ricerca_contatti.val().trim().toUpperCase();
+        var valore_input = ricerca_contatti.val().trim().toUpperCase();
         //se l'input ha caratteri faccio il controllo
         if (ricerca_contatti.val().length > 0) {
             //ciclo i singoli contatti
@@ -52,7 +53,7 @@ $(document).ready(function() {
                 //recupero il titolo del contatto
                 var nome_contatto = $(this).find("h5").text().toUpperCase();
                 //se ho un contatto uguale all' intero o parziale valore dell'utente mostro il contatto altrimenti lo nascondo
-                if (nome_contatto.includes(input_search)) {
+                if (nome_contatto.includes(valore_input)) {
                     $(this).show();
                 } else {
                     $(this).hide();
@@ -132,9 +133,9 @@ $(document).ready(function() {
         //aggiungo la classe active al box-chat corrispondente
         $("#message-container[data-nome='" + data + "']").addClass("active");
         //recupero l'immagine di profilo del contatto
-        var image = $(this).find("img").attr("src");
+        var immagine = $(this).find("img").attr("src");
         //aggiungo l'immagine nell'intestazione della conversazione
-        $("#header-right .photo-profile img").attr("src", image);
+        $("#header-right .photo-profile img").attr("src", immagine);
         //recupero il nome del nome del contatto
         var nome = $(this).find("h5").text();
         //aggiungo il nome nell'intestazioe della conversazione
@@ -142,7 +143,7 @@ $(document).ready(function() {
     })
 
     //inserisco l'ora del sistema nell'ultimo accesso
-    $(".last-access span").text(time())
+    $(".chat .time, .last-access span").text(time())
 
 
     //*****************ELIMINA CHAT*********************//
@@ -245,8 +246,8 @@ $(document).ready(function() {
       if (minutes < 10) {
           minutes = "0" + minutes;
       }
-      var time = hours + ":" + minutes;
-      return time
+      var ora = hours + ":" + minutes;
+      return ora
     }
 
     // //funzione per l'auto-scroll
