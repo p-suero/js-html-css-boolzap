@@ -215,12 +215,20 @@ body {
     padding-left: 10px;
     line-height: 20px;
     font-size: 11px;
+    width: 70%;
 }
 
 .chat-info h5 {
     font-size: 15px;
     font-weight: 500;
     color: black;
+}
+
+.chat-info p {
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 90%;
 }
 
 .time {
@@ -282,14 +290,12 @@ body {
     background-color: rgb(220, 248, 198);
     float: right;
     clear: both;
-    text-align: right;
 }
 
 .received {
     background-color: white;
     float: left;
     clear: both;
-    text-align: left;
 }
 
 .time-text {

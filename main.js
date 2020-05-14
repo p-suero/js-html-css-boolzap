@@ -119,7 +119,7 @@ $(document).ready(function() {
     //intercetto il click sulla chat (utilizzo la funzione on affinchè tenga conto delle chat che si aggiungono in cima alla lista, se inserito un messaggio)
     $("#chat-container").on("click", ".chat", function() {
         //rimuovo il focus alla chat già attiva
-        $(".chat.focus").removeClass("focus")
+        $(".chat.focus").removeClass("focus");
         //rimuovo il display alla chat aperta
         $(".message-container.active").removeClass("active");
         //aggiungo il focus alla chat ora selezionata
@@ -174,11 +174,10 @@ $(document).ready(function() {
     //*************************************************//
 
     //all'apertura della pagina faccio lo scroll della pagina
-    scrollauto()
-
+    scrollauto();
 
     //inserisco l'ora del sistema nell'ultimo accesso
-    $(".chat .time, .last-access span").text(time())
+    $(".last-access span").text(time());
 
 
     //********************FUNZIONI********************//
@@ -202,12 +201,6 @@ $(document).ready(function() {
             $(".message-container.active").append(nuovo_msg);
             //svuoto il contenuto dell'input
             $("#text-input").val("");
-            //clono la chat attiva in quel momento
-            var chat_selezionata = $(".chat.focus").clone();
-            //la rimuovo dal posto in cui risiede
-            $(".chat.focus").remove();
-            //la inserisco in cima alla lista
-            $("#chat-container").prepend(chat_selezionata);
             //se l'icona d'invio messaggio resta visibile, la nascondo
             if ($(".icon-container .fa-paper-plane").is(":visible")) {
                 //elimino la classe active all'icona d'inviato
@@ -217,20 +210,31 @@ $(document).ready(function() {
             }
             //setto la spunta blu
             setTimeout(function() {
-                $("div:last-child .sent").addClass("read");
+                $(".message-container.active div:last-of-type.sent").addClass("read");
             }, 500);
-            //se avvio una ricerca e subito dopo invio un messaggio , mostro tutti i contatti ed esco dalla ricerca
-            if ($(".fa-arrow-right").is(":visible")) {
-                //simulo un click sull'icona alla sinistra dell'input di ricerca per uscire da quest'ultimo
-                $(".fa-arrow-right").trigger("mousedown")
-            }
+            //setto l'anteprima della chat
+            anteprima_chat();
             //faccio lo scroll della pagina
             scrollauto();
+            //clono la chat attiva in quel momento
+            var chat_selezionata = $(".chat.focus").clone();
+            //la rimuovo dal posto in cui risiede
+            $(".chat.focus").remove();
+            //la inserisco in cima alla lista
+            $("#chat-container").prepend(chat_selezionata);
             //se invio un messaggio dopo una ricerca dal contenitore delle chat e quest ultimo ha lo scroll non in alto, la imposto
             if ($("#chat-container").scrollTop() != 0) {
-                $("#chat-container").scrollTop(0)
+                $("#chat-container").scrollTop(0);
+            }
+            //se avvio una ricerca e subito dopo invio un messaggio, mostro tutti i contatti ed esco dalla ricerca
+            if ($(".fa-arrow-right").is(":visible")) {
+                //simulo un click sull'icona alla sinistra dell'input di ricerca per uscire da quest'ultimo
+                $(".fa-arrow-right").trigger("mousedown");
             }
 
+
+            //**************RISPOSTA PC *************//
+            //**************************************//
             //faccio partire il timer per la risposta
             setTimeout(risposta_pc, 1000);
         }
@@ -241,30 +245,43 @@ $(document).ready(function() {
         //clono l'elemento nel template
         var risposta_msg = $(".template .text").clone();
         //aggiungo la classe "messaggio inviato"
-        risposta_msg.addClass("received")
+        risposta_msg.addClass("received");
         //aggiungo il testo al tag
         risposta_msg.children("p:first-child").text("ok");
         //aggiungo l'ora del sistema al tag
         risposta_msg.children(".time-text").text(time());
         //inserisco il tag nel html
         $(".message-container.active").append(risposta_msg);
+        //setto l'anteprima della chat
+        anteprima_chat();
         //faccio lo scroll della pagina
-        scrollauto()
+        scrollauto();
     }
 
     //funzione per il recupero dell'ora di sistema
     function time() {
-      var date = new Date();
-      var hours = date.getHours();
-      var minutes = date.getMinutes();
-      if (minutes < 10) {
+        var date = new Date();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        if (minutes < 10) {
           minutes = "0" + minutes;
-      }
-      var ora = hours + ":" + minutes;
-      return ora
+        }
+        var ora = hours + ":" + minutes;
+        return ora;
     }
 
     function scrollauto() {
-        $(".message-container.active").scrollTop($(".message-container.active")[0].scrollHeight)
+        $(".message-container.active").scrollTop($(".message-container.active")[0].scrollHeight);
+    }
+
+    function anteprima_chat () {
+        //copio il testo dell'ultimo messaggio
+        var testo = $(".message-container.active div:last-of-type.text p:first-child").text();
+        //inserisco il contenuto del testo inviato sotto al nome della chat corrispondente
+        $(".chat.focus .chat-info p:first-of-type").text(testo);
+        //copio l'ora dell'ultimo messaggio
+        var ora_msg = $(".message-container.active div:last-of-type.text .time-text").text();
+        //inserisco l'ora d'invio dell'ultimo messaggio affianco al nome della chat
+        $(".chat.focus .time").text(ora_msg)
     }
 });
