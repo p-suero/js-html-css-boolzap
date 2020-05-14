@@ -167,6 +167,8 @@ $(document).ready(function() {
     $(".message-container").on("click", ".message-delate", function() {
         //elimino il messaggio
         $(this).closest(".text").remove();
+        //ridefinisco l'anteprima della chat
+        anteprima_chat();
     })
 
 
@@ -222,7 +224,7 @@ $(document).ready(function() {
             $(".chat.focus").remove();
             //la inserisco in cima alla lista
             $("#chat-container").prepend(chat_selezionata);
-            //se invio un messaggio dopo una ricerca dal contenitore delle chat e quest ultimo ha lo scroll non in alto, la imposto
+            //se invio un messaggio dopo una ricerca dal contenitore delle chat e quest ultimo ha lo scroll non in alto, imposto quest'ultimo a 0
             if ($("#chat-container").scrollTop() != 0) {
                 $("#chat-container").scrollTop(0);
             }
