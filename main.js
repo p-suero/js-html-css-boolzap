@@ -178,10 +178,6 @@ $(document).ready(function() {
     //all'apertura della pagina faccio lo scroll della pagina
     scrollauto();
 
-    //inserisco l'ora del sistema nell'ultimo accesso
-    $(".last-access span").text(time());
-
-
     //********************FUNZIONI********************//
     //***********************************************//
 

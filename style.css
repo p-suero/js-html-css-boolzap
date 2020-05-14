@@ -256,9 +256,12 @@ body {
 .text-info h6 {
     font-size: 14px;
     color: black;
-    line-height: 15px;
+    line-height: 18px;
 }
 
+.text-info p {
+    font-size: 11px;
+}
 
 /* selettori messaggio */
 .message-container {
