@@ -173,15 +173,13 @@ $(document).ready(function() {
     //*****************SETTAGGI ACCESSORI***************//
     //*************************************************//
 
-    //se all'apertura della pagina l'ultimo messaggio non è visualizzato faccio lo scroll
-    if ($(".message-containerr").scrollTop() != 0) {
-        $('.message-container').animate({
-            scrollTop: $('.text:last-child').offset().top
-        }, 1000);
-    }
+    //all'apertura della pagina faccio lo scroll della pagina
+    scrollauto()
+
 
     //inserisco l'ora del sistema nell'ultimo accesso
     $(".chat .time, .last-access span").text(time())
+
 
     //********************FUNZIONI********************//
     //***********************************************//
@@ -210,7 +208,6 @@ $(document).ready(function() {
             $(".chat.focus").remove();
             //la inserisco in cima alla lista
             $("#chat-container").prepend(chat_selezionata);
-
             //se l'icona d'invio messaggio resta visibile, la nascondo
             if ($(".icon-container .fa-paper-plane").is(":visible")) {
                 //elimino la classe active all'icona d'inviato
@@ -218,27 +215,24 @@ $(document).ready(function() {
                 //aggiungo la classe active al microfono
                 $(".icon-container .fa-microphone").addClass("active");
             }
-
             //setto la spunta blu
             setTimeout(function() {
                 $("div:last-child .sent").addClass("read");
             }, 500);
-
-            //faccio partire il timer per la risposta
-            setTimeout(risposta_pc, 1000);
-
             //se avvio una ricerca e subito dopo invio un messaggio , mostro tutti i contatti ed esco dalla ricerca
             if ($(".fa-arrow-right").is(":visible")) {
                 //simulo un click sull'icona alla sinistra dell'input di ricerca per uscire da quest'ultimo
                 $(".fa-arrow-right").trigger("mousedown")
             }
-
-            //se quando scrivo un messaggio la barra dello scroll non è in alto la setto
+            //faccio lo scroll della pagina
+            scrollauto();
+            //se invio un messaggio dopo una ricerca dal contenitore delle chat e quest ultimo ha lo scroll non in alto, la imposto
             if ($("#chat-container").scrollTop() != 0) {
-                var nome =$("#chat-container").animate({
-                    scrollTop: 0
-                }, "fast");
+                $("#chat-container").scrollTop(0)
             }
+
+            //faccio partire il timer per la risposta
+            setTimeout(risposta_pc, 1000);
         }
     }
 
@@ -254,6 +248,8 @@ $(document).ready(function() {
         risposta_msg.children(".time-text").text(time());
         //inserisco il tag nel html
         $(".message-container.active").append(risposta_msg);
+        //faccio lo scroll della pagina
+        scrollauto()
     }
 
     //funzione per il recupero dell'ora di sistema
@@ -266,5 +262,9 @@ $(document).ready(function() {
       }
       var ora = hours + ":" + minutes;
       return ora
+    }
+
+    function scrollauto() {
+        $(".message-container.active").scrollTop($(".message-container.active")[0].scrollHeight)
     }
 });
