@@ -173,8 +173,12 @@ $(document).ready(function() {
     //*****************SETTAGGI ACCESSORI***************//
     //*************************************************//
 
-    //faccio lo scroll verso l'alto della pagina
-
+    //se all'apertura della pagina l'ultimo messaggio non è visualizzato faccio lo scroll
+    if ($(".message-containerr").scrollTop() != 0) {
+        $('.message-container').animate({
+            scrollTop: $('.text:last-child').offset().top
+        }, 1000);
+    }
 
     //inserisco l'ora del sistema nell'ultimo accesso
     $(".chat .time, .last-access span").text(time())
@@ -218,7 +222,7 @@ $(document).ready(function() {
             //setto la spunta blu
             setTimeout(function() {
                 $("div:last-child .sent").addClass("read");
-            }, 500)
+            }, 500);
 
             //faccio partire il timer per la risposta
             setTimeout(risposta_pc, 1000);
@@ -227,6 +231,13 @@ $(document).ready(function() {
             if ($(".fa-arrow-right").is(":visible")) {
                 //simulo un click sull'icona alla sinistra dell'input di ricerca per uscire da quest'ultimo
                 $(".fa-arrow-right").trigger("mousedown")
+            }
+
+            //se quando scrivo un messaggio la barra dello scroll non è in alto la setto
+            if ($("#chat-container").scrollTop() != 0) {
+                var nome =$("#chat-container").animate({
+                    scrollTop: 0
+                }, "fast");
             }
         }
     }
