@@ -16,9 +16,9 @@ $(document).ready(function() {
     });
 
     //invio il messaggio al click dell'icona
-    $(".fa-paper-plane").mousedown(function(event) {
-        //uso il prevent default per lasciare la barra input attiva
-        event.preventDefault();
+    $(".fa-paper-plane").click(function(event) {
+        //attivo il focus sull'input
+        $("#text-input").show().focus();
         //aggiungo la funzione d'invio messaggio
         send_message();
     });
@@ -68,10 +68,13 @@ $(document).ready(function() {
     })
 
     //ricambio quando l'input non è attivo
-    ricerca_contatti.blur(function() {
-        if (ricerca_contatti.val().trim().length == 0) {
-            $("#search-contact .fa-arrow-right").removeClass("active");
-            $("#search-contact .fa-search").addClass("active");
+    $(document).click(function(event) {
+        var target = $(event.target)
+        if (!(target.is(".input-container *"))) {
+            if (ricerca_contatti.val().trim().length == 0) {
+                $("#search-contact .fa-arrow-right").removeClass("active");
+                $("#search-contact .fa-search").addClass("active");
+            }
         }
     })
 
@@ -85,22 +88,18 @@ $(document).ready(function() {
     })
 
     //aggiungo azione all'evento mouse down sull'icona "cancella valore input"
-    $("#search-contact span").mousedown(function(event) {
-        //spossesso il mousedown delle sue funzioni per lasciare l'input attivo
-        event.preventDefault();
+    $("#search-contact span").click(function(event) {
         //svuoto il valore dell'input
         ricerca_contatti.val("");
         //all'uscita dall'input mostro tutti i contatti
         $("#chat-container .chat").show();
         //rimuovo il display all'icona "rimuovi valore input"
         $("#search-contact span").removeClass("active");
-        //se l' input non è attivo al click della "X" riattivo questo
-        if (!(ricerca_contatti.is(":focus"))) {
-            ricerca_contatti.show().focus();
-        }
+        //attivo l'input
+        ricerca_contatti.show().focus();
     })
 
-    $("#search-contact .fa-arrow-right").mousedown(function() {
+    $("#search-contact .fa-arrow-right").click(function() {
         //svuoto il valore dell'input
         ricerca_contatti.val("");
         //all'uscita dall'input mostro tutti i contatti
@@ -227,7 +226,7 @@ $(document).ready(function() {
             //se avvio una ricerca e subito dopo invio un messaggio, mostro tutti i contatti ed esco dalla ricerca
             if ($(".fa-arrow-right").is(":visible")) {
                 //simulo un click sull'icona alla sinistra dell'input di ricerca per uscire da quest'ultimo
-                $(".fa-arrow-right").trigger("mousedown");
+                $(".fa-arrow-right").trigger("click");
             }
 
 
