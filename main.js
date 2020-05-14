@@ -209,7 +209,7 @@ $(document).ready(function() {
             //setto la spunta blu
             setTimeout(function() {
                 $(".message-container.active div:last-of-type.sent").addClass("read");
-            }, 500);
+            }, 600);
             //setto l'anteprima della chat
             anteprima_chat();
             //faccio lo scroll della pagina
@@ -233,8 +233,18 @@ $(document).ready(function() {
 
             //**************RISPOSTA PC *************//
             //**************************************//
+
+            //seleziono l'anteprima della chat
+            var risp_in_corso = $(".chat.focus .chat-info p");
+            //seleziono l'intestazione della chat
+            var stato = $(".text-info p");
+            //faccio partire un timer di mezzo secondo
+            setTimeout(function() {
+                risp_in_corso.text("sta scrivendo...");
+                stato.text("sta scrivendo...")
+            }, 600)
             //faccio partire il timer per la risposta
-            setTimeout(risposta_pc, 1000);
+            setTimeout(risposta_pc, 1300);
         }
     }
 
@@ -254,6 +264,8 @@ $(document).ready(function() {
         anteprima_chat();
         //faccio lo scroll della pagina
         scrollauto();
+        //seleziono l'intestrazione della pagine ed inserisco lo stato "online"
+        var stato_online = $(".text-info p").text("online")
     }
 
     //funzione per il recupero dell'ora di sistema
