@@ -238,7 +238,7 @@ $(document).ready(function() {
             var risp_in_corso = $(".chat.focus .chat-info p");
             //seleziono l'intestazione della chat
             var stato = $(".text-info p");
-            //faccio partire un timer di mezzo secondo
+            //faccio partire un timer di mezzo secondo allo scadere del quale setto lo stato
             setTimeout(function() {
                 risp_in_corso.text("sta scrivendo...");
                 stato.text("sta scrivendo...")
