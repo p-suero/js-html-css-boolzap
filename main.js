@@ -209,7 +209,7 @@ $(document).ready(function() {
             //setto la spunta blu
             setTimeout(function() {
                 $(".message-container.active div:last-of-type.sent").addClass("read");
-            }, 600);
+            }, 400);
             //setto l'anteprima della chat
             anteprima_chat();
             //faccio lo scroll della pagina
@@ -242,7 +242,7 @@ $(document).ready(function() {
             setTimeout(function() {
                 risp_in_corso.text("sta scrivendo...");
                 stato.text("sta scrivendo...")
-            }, 600)
+            }, 700)
             //faccio partire il timer per la risposta
             setTimeout(risposta_pc, 1300);
         }
