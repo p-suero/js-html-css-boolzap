@@ -171,9 +171,17 @@ $(document).ready(function() {
         anteprima_chat();
     })
 
-    //********settaggi accessori*******//
+    //********MINESTONE-bonus*******//
     //all'apertura della pagina faccio lo scroll della pagina
     scrollauto();
+
+    //intercetto il click sul collegamento di attiva notifiche
+    $(".banner-text p:nth-child(2)").click(function() {
+        //rimuovo il banner
+        $("#banner-alerts").remove();
+        //ridefinisco l'altezza al contenitore delle chat
+        $("#chat-container").addClass("width-plus")
+    })
 
     //********************FUNZIONI********************//
     //***********************************************//

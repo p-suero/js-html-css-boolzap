@@ -136,6 +136,7 @@ body {
     display: flex;
     align-items: center;
     font-size: 12px;
+    background-color: #f4f4f4;
 }
 
 #search-contact .input-container {
@@ -188,6 +189,10 @@ body {
 #chat-container {
     height: calc(100% - 165px);
     overflow-y: auto;
+}
+
+#chat-container.width-plus {
+    height: calc(100% - 95px);
 }
 
 .chat {
