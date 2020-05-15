@@ -87,7 +87,7 @@ $(document).ready(function() {
         }
     })
 
-    //aggiungo azione all'evento mouse down sull'icona "cancella valore input"
+    //aggiungo azione all'evento click sull'icona "cancella valore input"
     $("#search-contact span").click(function(event) {
         //svuoto il valore dell'input
         ricerca_contatti.val("");
@@ -99,6 +99,7 @@ $(document).ready(function() {
         ricerca_contatti.show().focus();
     })
 
+    //aggiungo azione all'evento click sull'icona "esci dall'input"
     $("#search-contact .fa-arrow-right").click(function() {
         //svuoto il valore dell'input
         ricerca_contatti.val("");
