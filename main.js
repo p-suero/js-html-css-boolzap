@@ -43,7 +43,7 @@ $(document).ready(function() {
         //recupro il valore dell'input inserito dall'utente
         var valore_input = ricerca_contatti.val().trim().toUpperCase();
         //se l'input ha caratteri faccio il controllo
-        if (ricerca_contatti.val().length > 0) {
+        if (valore_input.length > 0) {
             //ciclo i singoli contatti
             $("#chat-container .chat").each(function() {
                 //recupero il titolo del contatto
