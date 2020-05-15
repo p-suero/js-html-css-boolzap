@@ -191,7 +191,7 @@ body {
     overflow-y: auto;
 }
 
-#chat-container.width-plus {
+#chat-container.height-plus {
     height: calc(100% - 95px);
 }
 

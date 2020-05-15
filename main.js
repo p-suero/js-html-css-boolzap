@@ -180,7 +180,7 @@ $(document).ready(function() {
         //rimuovo il banner
         $("#banner-alerts").remove();
         //ridefinisco l'altezza al contenitore delle chat
-        $("#chat-container").addClass("width-plus");
+        $("#chat-container").addClass("height-plus");
     })
 
     //********************FUNZIONI********************//
