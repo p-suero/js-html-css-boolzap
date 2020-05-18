@@ -142,7 +142,6 @@ $(document).ready(function() {
      //************MINESTONE 3 (elimina-chat)***********//
     //*************************************************//
 
-
     //intercetto il click dell'utente sullo chevron-down
     $(".message-container").on("click", ".fa-chevron-down", function() {
         //se non è visibile apro quello corrente e chiudo tutti gli altri
@@ -171,7 +170,10 @@ $(document).ready(function() {
         anteprima_chat();
     })
 
-    //********MINESTONE-bonus*******//
+
+     //********MINESTONE-bonus*******//
+    //******************************//
+
     //all'apertura della pagina faccio lo scroll della pagina
     scrollauto();
 
@@ -182,6 +184,7 @@ $(document).ready(function() {
         //ridefinisco l'altezza al contenitore delle chat
         $("#chat-container").addClass("height-plus");
     })
+
 
     //********************FUNZIONI********************//
     //***********************************************//
@@ -236,11 +239,6 @@ $(document).ready(function() {
                 //simulo un click sull'icona alla sinistra dell'input di ricerca per uscire da quest'ultimo
                 $(".fa-arrow-right").trigger("click");
             }
-
-
-             //********Minestone 2 (risposta-pc)*****//
-            //**************************************//
-
             //seleziono l'anteprima della chat
             var risp_in_corso = $(".chat.focus .chat-info p");
             //seleziono l'intestazione della chat
@@ -255,6 +253,10 @@ $(document).ready(function() {
         }
     }
 
+
+     //********Minestone 2 (risposta-pc)*****//
+    //**************************************//
+    
     //funzione che mi restituisce una risposta
     function risposta_pc() {
         //creo l'oggetto contenente i valori del messaggio necessari per utilizzare il template
@@ -298,7 +300,7 @@ $(document).ready(function() {
 
     function anteprima_chat () {
         //se c'è un messaggio precedente a quello eliminato lo visualizzo in anteprima
-        if ($(".message-container.active *").hasClass("sent") || $(".message-container.active").hasClass("received")) {
+        if ($(".message-container.active *").hasClass("sent") || $(".message-container.active *").hasClass("received")) {
             //copio il testo dell'ultimo messaggio
             var testo = $(".message-container.active div:last-of-type.text p:first-child").text();
             //inserisco il contenuto del testo inviato sotto al nome della chat corrispondente
