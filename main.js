@@ -248,15 +248,16 @@ $(document).ready(function() {
                 risp_in_corso.text("sta scrivendo...");
                 stato.text("sta scrivendo...")
             }, 700)
+
+
+            //********Minestone 2 (risposta-pc)*****//
+           //**************************************//
+           
             //faccio partire il timer per la risposta
             setTimeout(risposta_pc, 1300);
         }
     }
 
-
-     //********Minestone 2 (risposta-pc)*****//
-    //**************************************//
-    
     //funzione che mi restituisce una risposta
     function risposta_pc() {
         //creo l'oggetto contenente i valori del messaggio necessari per utilizzare il template
