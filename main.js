@@ -190,18 +190,23 @@ $(document).ready(function() {
     function send_message() {
         //valido l'input
         if ($("#text-input").val().trim().length > 0) {
-            //leggo il valore dell'input
-            var valore_input = $("#text-input").val();
-            //clono l'elemento nel template
-            var nuovo_msg = $(".template .text").clone();
-            //aggiungo la classe messaggio da inviare
-            nuovo_msg.addClass("sent");
-            //aggiungo il testo al tag
-            nuovo_msg.children("p:first-child").text(valore_input);
-            //aggiungo l'ora del sistema al tag
-            nuovo_msg.children(".time-text").text(time());
-            //inserisco il tag nel html
-            $(".message-container.active").append(nuovo_msg);
+
+            //creo l'oggetto contenente le chiavi del messaggio
+            var messaggio = {
+                "testo" : $("#text-input").val(),
+                "tipo" : "sent",
+                "orario" : time()
+            }
+
+            //recupero la struttura html del template
+            var template_html = $("#messaggio").html();
+            // preparo la funzione da utilizzare per utilizzare il template
+            var template_function = Handlebars.compile(template_html);
+            //creo una variabile contenente la funzione con parametri dell'oggetto
+            var html_finale = compile(messaggio);
+            //aggiungo il messaggio nell html
+            $(".message-container.active").append(html_finale)
+
             //svuoto il contenuto dell'input
             $("#text-input").val("");
             //se l'icona d'invio messaggio resta visibile, la nascondo
@@ -255,16 +260,21 @@ $(document).ready(function() {
 
     //funzione che mi restituisce una risposta
     function risposta_pc() {
-        //clono l'elemento nel template
-        var risposta_msg = $(".template .text").clone();
-        //aggiungo la classe "messaggio inviato"
-        risposta_msg.addClass("received");
-        //aggiungo il testo al tag
-        risposta_msg.children("p:first-child").text("ok");
-        //aggiungo l'ora del sistema al tag
-        risposta_msg.children(".time-text").text(time());
-        //inserisco il tag nel html
-        $(".message-container.active").append(risposta_msg);
+        //creo l'oggetto contenente le chiavi del messaggio
+        var messaggio = {
+            "testo" : $("#text-input").val(),
+            "tipo" : "received",
+            "orario" : time()
+        }
+
+        //recupero la struttura html del template
+        var template_html = $("#messaggio").html();
+        // preparo la funzione da utilizzare per utilizzare il template
+        var template_function = Handlebars.compile(template_html);
+        //creo una variabile contenente la funzione con parametri dell'oggetto
+        var html_finale = compile(messaggio);
+        //aggiungo il messaggio nell html
+        $(".message-container.active").append(html_finale)
         //setto l'anteprima della chat
         anteprima_chat();
         //faccio lo scroll della pagina
