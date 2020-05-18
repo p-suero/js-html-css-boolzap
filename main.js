@@ -190,23 +190,20 @@ $(document).ready(function() {
     function send_message() {
         //valido l'input
         if ($("#text-input").val().trim().length > 0) {
-
-            //creo l'oggetto contenente le chiavi del messaggio
+            //creo l'oggetto contenente i valori del messaggio necessari per utilizzare il template
             var messaggio = {
                 "testo" : $("#text-input").val(),
                 "tipo" : "sent",
                 "orario" : time()
             }
-
             //recupero la struttura html del template
             var template_html = $("#messaggio").html();
-            // preparo la funzione da utilizzare per utilizzare il template
+            // preparo la funzione al fine di utilizzare il template
             var template_function = Handlebars.compile(template_html);
-            //creo una variabile contenente la funzione con parametri dell'oggetto
-            var html_finale = compile(messaggio);
+            //creo una variabile contenente il template secondo i parametri dell'oggetto
+            var html_finale = template_function(messaggio);
             //aggiungo il messaggio nell html
-            $(".message-container.active").append(html_finale)
-
+            $(".message-container.active").append(html_finale);
             //svuoto il contenuto dell'input
             $("#text-input").val("");
             //se l'icona d'invio messaggio resta visibile, la nascondo
@@ -260,21 +257,20 @@ $(document).ready(function() {
 
     //funzione che mi restituisce una risposta
     function risposta_pc() {
-        //creo l'oggetto contenente le chiavi del messaggio
+        //creo l'oggetto contenente i valori del messaggio necessari per utilizzare il template
         var messaggio = {
-            "testo" : $("#text-input").val(),
+            "testo" : "ok",
             "tipo" : "received",
             "orario" : time()
         }
-
         //recupero la struttura html del template
         var template_html = $("#messaggio").html();
-        // preparo la funzione da utilizzare per utilizzare il template
+        // preparo la funzione al fine di utilizzare il template
         var template_function = Handlebars.compile(template_html);
-        //creo una variabile contenente la funzione con parametri dell'oggetto
-        var html_finale = compile(messaggio);
+        //creo una variabile contenente il template secondo i parametri dell'oggetto
+        var html_finale = template_function(messaggio);
         //aggiungo il messaggio nell html
-        $(".message-container.active").append(html_finale)
+        $(".message-container.active").append(html_finale);
         //setto l'anteprima della chat
         anteprima_chat();
         //faccio lo scroll della pagina
@@ -282,6 +278,7 @@ $(document).ready(function() {
         //seleziono l'intestrazione della pagine ed inserisco lo stato "online"
         var stato_online = $(".text-info p").text("online")
     }
+
 
     //funzione per il recupero dell'ora di sistema
     function time() {
@@ -300,13 +297,20 @@ $(document).ready(function() {
     }
 
     function anteprima_chat () {
-        //copio il testo dell'ultimo messaggio
-        var testo = $(".message-container.active div:last-of-type.text p:first-child").text();
-        //inserisco il contenuto del testo inviato sotto al nome della chat corrispondente
-        $(".chat.focus .chat-info p:first-of-type").text(testo);
-        //copio l'ora dell'ultimo messaggio
-        var ora_msg = $(".message-container.active div:last-of-type.text .time-text").text();
-        //inserisco l'ora d'invio dell'ultimo messaggio affianco al nome della chat
-        $(".chat.focus .time").text(ora_msg)
+        //se c'è un messaggio precedente a quello eliminato lo visualizzo in anteprima
+        if ($(".message-container.active *").hasClass("sent") || $(".message-container.active").hasClass("received")) {
+            //copio il testo dell'ultimo messaggio
+            var testo = $(".message-container.active div:last-of-type.text p:first-child").text();
+            //inserisco il contenuto del testo inviato sotto al nome della chat corrispondente
+            $(".chat.focus .chat-info p:first-of-type").text(testo);
+            //copio l'ora dell'ultimo messaggio
+            var ora_msg = $(".message-container.active div:last-of-type.text .time-text").text();
+            //inserisco l'ora d'invio dell'ultimo messaggio affianco al nome della chat
+            $(".chat.focus .time").text(ora_msg);
+        } else {
+            //altrimenti stampo un messaggio "chat-vuota"
+            $(".chat.focus .chat-info p:first-of-type").text("La chat è vuota. Scrivi un messaggio!");
+        }
+
     }
 });
