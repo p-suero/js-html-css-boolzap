@@ -1,5 +1,11 @@
 $(document).ready(function() {
 
+    //**********HANDLEBARS TEMPLATE***********//
+    //recupero la struttura html del template
+    var template_html = $("#messaggio").html();
+    // preparo la funzione al fine di utilizzare il template con handlebars
+    var template_function = Handlebars.compile(template_html);
+
 
      //**************MINESTONE 1 (input-messaggio)************//
     //*******************************************************//
@@ -199,10 +205,6 @@ $(document).ready(function() {
                 "tipo" : "sent",
                 "orario" : time()
             }
-            //recupero la struttura html del template
-            var template_html = $("#messaggio").html();
-            // preparo la funzione al fine di utilizzare il template
-            var template_function = Handlebars.compile(template_html);
             //creo una variabile contenente il template secondo i parametri dell'oggetto
             var html_finale = template_function(messaggio);
             //aggiungo il messaggio nell html
@@ -252,7 +254,7 @@ $(document).ready(function() {
 
             //********Minestone 2 (risposta-pc)*****//
            //**************************************//
-           
+
             //faccio partire il timer per la risposta
             setTimeout(risposta_pc, 1300);
         }
@@ -266,10 +268,6 @@ $(document).ready(function() {
             "tipo" : "received",
             "orario" : time()
         }
-        //recupero la struttura html del template
-        var template_html = $("#messaggio").html();
-        // preparo la funzione al fine di utilizzare il template
-        var template_function = Handlebars.compile(template_html);
         //creo una variabile contenente il template secondo i parametri dell'oggetto
         var html_finale = template_function(messaggio);
         //aggiungo il messaggio nell html
@@ -281,7 +279,6 @@ $(document).ready(function() {
         //seleziono l'intestrazione della pagine ed inserisco lo stato "online"
         var stato_online = $(".text-info p").text("online")
     }
-
 
     //funzione per il recupero dell'ora di sistema
     function time() {
