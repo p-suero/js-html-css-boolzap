@@ -7,7 +7,7 @@ $(document).ready(function() {
     var template_function = Handlebars.compile(template_html);
 
 
-     //**************MINESTONE 1 (input-messaggio)************//
+     //**************MILESTONE 1 (input-messaggio)************//
     //*******************************************************//
 
     //attivo l'icona d'invio messaggio al click dell'input
@@ -38,7 +38,7 @@ $(document).ready(function() {
     });
 
 
-     //*******MINESTONE 2 (ricerca-contatto)*************//
+     //*******MILESTONE 2 (ricerca-contatto)*************//
     //*************************************************//
 
     //variabile contenente il selettore input della ricerca contatti
@@ -119,7 +119,7 @@ $(document).ready(function() {
     })
 
 
-     //**********MINESTONE 3 (seleziona-chat)************//
+     //**********MILESTONE 3 (seleziona-chat)************//
     //**************************************************//
 
     //intercetto il click sulla chat (utilizzo la funzione on affinchè tenga conto delle chat che si aggiungono in cima alla lista, se inserito un messaggio)
@@ -145,7 +145,7 @@ $(document).ready(function() {
     })
 
 
-     //************MINESTONE 3 (elimina-chat)***********//
+     //************MILESTONE 3 (elimina-chat)***********//
     //*************************************************//
 
     //intercetto il click dell'utente sullo chevron-down
@@ -177,7 +177,7 @@ $(document).ready(function() {
     })
 
 
-     //********MINESTONE-bonus*******//
+     //********MILESTONE-bonus*******//
     //******************************//
 
     //all'apertura della pagina faccio lo scroll della pagina
@@ -252,7 +252,7 @@ $(document).ready(function() {
             }, 700)
 
 
-            //********Minestone 2 (risposta-pc)*****//
+            //********Milestone 2 (risposta-pc)*****//
            //**************************************//
 
             //faccio partire il timer per la risposta
