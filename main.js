@@ -26,14 +26,14 @@ $(document).ready(function() {
         //attivo il focus sull'input
         $("#text-input").show().focus();
         //aggiungo la funzione d'invio messaggio
-        send_message();
+        invio_messaggio();
     });
 
     //invio il messaggio al click del tasto "enter"
     $("#text-input").keypress(function(e) {
         if(e.which == 13) {
             //aggiungo la funzione di invio messaggio
-            send_message();
+            invia_messaggio();
         }
     });
 
@@ -196,7 +196,7 @@ $(document).ready(function() {
     //***********************************************//
 
     //creo una funzione che inserisce un nuovo elemento all'interno del html partendo dal template
-    function send_message() {
+    function invia_messaggio() {
         //valido l'input
         if ($("#text-input").val().trim().length > 0) {
             //creo l'oggetto contenente i valori del messaggio necessari per utilizzare il template
@@ -211,39 +211,16 @@ $(document).ready(function() {
             $(".message-container.active").append(html_finale);
             //svuoto il contenuto dell'input
             $("#text-input").val("");
-            //se l'icona d'invio messaggio resta visibile, la nascondo
-            if ($(".icon-container .fa-paper-plane").is(":visible")) {
-                //elimino la classe active all'icona d'inviato
-                $(".icon-container .fa-paper-plane").removeClass("active");
-                //aggiungo la classe active al microfono
-                $(".icon-container .fa-microphone").addClass("active");
-            }
-            //setto la spunta blu
-            spunta_blu();
             //setto l'anteprima della chat
             anteprima_chat();
             //faccio lo scroll della pagina
             scrollauto();
-            //porto il contatto in cui è stato inviato un messaggio al primo posto in lista
-            sali_contatto();
-            //se lo scroll del contatto non è pari a 0 dopo l'invio del messaggio, lo setto appunto a 0
-            if ($("#chat-container").scrollTop() != 0) {
-                $("#chat-container").scrollTop(0);
-            }
-            //se avvio una ricerca e subito dopo invio un messaggio, mostro tutti i contatti ed esco dalla ricerca
-            if ($(".fa-arrow-right").is(":visible")) {
-                //simulo un click sull'icona alla sinistra dell'input di ricerca per uscire da quest'ultimo
-                $(".fa-arrow-right").trigger("click");
-            }
-            //faccio partire un timer, allo scadere del quale setto lo stato
-            setTimeout(function() {
-                $(".chat.focus .chat-info p").text("sta scrivendo...");
-                $(".text-info p").text("sta scrivendo...");
-            }, 700)
+            //aggiungo ulteriori dettagli agli elementi all'invio di un messaggio
+            dettagli_invio_messaggio();
 
 
-            //********Milestone 2 (risposta-pc)*****//
-           //**************************************//
+             //********Milestone 2 (risposta-pc)*****//
+            //**************************************//
 
             //faccio partire il timer per la risposta
             setTimeout(risposta_pc, 1300);
@@ -266,7 +243,7 @@ $(document).ready(function() {
         anteprima_chat();
         //faccio lo scroll della pagina
         scrollauto();
-        //seleziono l'intestrazione della pagine ed inserisco lo stato "online"
+        //seleziono l'intestazione della pagine ed inserisco lo stato "online"
         var stato_online = $(".text-info p").text("online");
     }
 
@@ -282,15 +259,46 @@ $(document).ready(function() {
         return ora;
     }
 
-    //funzione per settare la spunta blu
-    function spunta_blu(){
+    //funzione per settare i dettagli degli elementi all'invio del messaggio
+    function dettagli_invio_messaggio(){
+        //se l'icona d'invio messaggio resta visibile, la nascondo
+        if ($(".icon-container .fa-paper-plane").is(":visible")) {
+            //elimino la classe active all'icona d'inviato
+            $(".icon-container .fa-paper-plane").removeClass("active");
+            //aggiungo la classe active al microfono
+            $(".icon-container .fa-microphone").addClass("active");
+        }
+
+        //setto la spunta blu
         setTimeout(function() {
             $(".message-container.active div:last-of-type.sent").addClass("read");
         }, 400);
+
+        //all' invio del messaggio inserisco il contatto corrente in cima alla lista
+        var chat_selezionata = $(".chat.focus").clone();
+        $(".chat.focus").remove();
+        $("#chat-container").prepend(chat_selezionata);
+
+        //se lo scroll della lista contatti non è pari a 0 dopo l'invio del messaggio, lo setto appunto a 0
+        if ($("#chat-container").scrollTop() != 0) {
+            $("#chat-container").scrollTop(0);
+        }
+
+        //se avvio una ricerca e subito dopo invio un messaggio, mostro tutti i contatti ed esco dalla ricerca
+        if ($(".fa-arrow-right").is(":visible")) {
+            //simulo un click sull'icona alla sinistra dell'input di ricerca per uscire da quest'ultimo
+            $(".fa-arrow-right").trigger("click");
+        }
+
+        //faccio partire un timer, allo scadere del quale setto lo stato
+        setTimeout(function() {
+            $(".chat.focus .chat-info p").text("sta scrivendo...");
+            $(".text-info p").text("sta scrivendo...");
+        }, 700);
     }
 
     //funzione per la modifica dell'anteprima chat al contatto
-    function anteprima_chat () {
+    function anteprima_chat() {
         //se c'è un messaggio precedente a quello eliminato lo visualizzo in anteprima
         if ($(".message-container.active *").hasClass("sent") || $(".message-container.active *").hasClass("received")) {
             //copio il testo dell'ultimo messaggio
@@ -310,15 +318,5 @@ $(document).ready(function() {
     //funzione per lo scroll auto della pagina
     function scrollauto() {
         $(".message-container.active").scrollTop($(".message-container.active")[0].scrollHeight);
-    }
-
-    //funzione per porre il contatto in cui è stato inviato un messaggio sopra gli altri
-    function sali_contatto() {
-        //clono la chat attiva in quel momento
-        var chat_selezionata = $(".chat.focus").clone();
-        //la rimuovo dal posto in cui risiede
-        $(".chat.focus").remove();
-        //la inserisco in cima alla lista
-        $("#chat-container").prepend(chat_selezionata);
     }
 });
