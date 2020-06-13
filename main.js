@@ -219,20 +219,14 @@ $(document).ready(function() {
                 $(".icon-container .fa-microphone").addClass("active");
             }
             //setto la spunta blu
-            setTimeout(function() {
-                $(".message-container.active div:last-of-type.sent").addClass("read");
-            }, 400);
+            spunta_blu();
             //setto l'anteprima della chat
             anteprima_chat();
             //faccio lo scroll della pagina
             scrollauto();
-            //clono la chat attiva in quel momento
-            var chat_selezionata = $(".chat.focus").clone();
-            //la rimuovo dal posto in cui risiede
-            $(".chat.focus").remove();
-            //la inserisco in cima alla lista
-            $("#chat-container").prepend(chat_selezionata);
-            //se invio un messaggio dopo una ricerca dal contenitore delle chat e quest ultimo ha lo scroll non in alto, imposto quest'ultimo a 0
+            //porto il contatto in cui è stato inviato un messaggio al primo posto in lista
+            sali_contatto();
+            //se lo scroll del contatto non è pari a 0 dopo l'invio del messaggio, lo setto appunto a 0
             if ($("#chat-container").scrollTop() != 0) {
                 $("#chat-container").scrollTop(0);
             }
@@ -241,14 +235,10 @@ $(document).ready(function() {
                 //simulo un click sull'icona alla sinistra dell'input di ricerca per uscire da quest'ultimo
                 $(".fa-arrow-right").trigger("click");
             }
-            //seleziono l'anteprima della chat
-            var risp_in_corso = $(".chat.focus .chat-info p");
-            //seleziono l'intestazione della chat
-            var stato = $(".text-info p");
-            //faccio partire un timer di mezzo secondo allo scadere del quale setto lo stato
+            //faccio partire un timer, allo scadere del quale setto lo stato
             setTimeout(function() {
-                risp_in_corso.text("sta scrivendo...");
-                stato.text("sta scrivendo...")
+                $(".chat.focus .chat-info p").text("sta scrivendo...");
+                $(".text-info p").text("sta scrivendo...");
             }, 700)
 
 
@@ -277,7 +267,7 @@ $(document).ready(function() {
         //faccio lo scroll della pagina
         scrollauto();
         //seleziono l'intestrazione della pagine ed inserisco lo stato "online"
-        var stato_online = $(".text-info p").text("online")
+        var stato_online = $(".text-info p").text("online");
     }
 
     //funzione per il recupero dell'ora di sistema
@@ -292,10 +282,14 @@ $(document).ready(function() {
         return ora;
     }
 
-    function scrollauto() {
-        $(".message-container.active").scrollTop($(".message-container.active")[0].scrollHeight);
+    //funzione per settare la spunta blu
+    function spunta_blu(){
+        setTimeout(function() {
+            $(".message-container.active div:last-of-type.sent").addClass("read");
+        }, 400);
     }
 
+    //funzione per la modifica dell'anteprima chat al contatto
     function anteprima_chat () {
         //se c'è un messaggio precedente a quello eliminato lo visualizzo in anteprima
         if ($(".message-container.active *").hasClass("sent") || $(".message-container.active *").hasClass("received")) {
@@ -311,6 +305,20 @@ $(document).ready(function() {
             //altrimenti stampo un messaggio "chat-vuota"
             $(".chat.focus .chat-info p:first-of-type").text("La chat è vuota. Scrivi un messaggio!");
         }
+    }
 
+    //funzione per lo scroll auto della pagina
+    function scrollauto() {
+        $(".message-container.active").scrollTop($(".message-container.active")[0].scrollHeight);
+    }
+
+    //funzione per porre il contatto in cui è stato inviato un messaggio sopra gli altri
+    function sali_contatto() {
+        //clono la chat attiva in quel momento
+        var chat_selezionata = $(".chat.focus").clone();
+        //la rimuovo dal posto in cui risiede
+        $(".chat.focus").remove();
+        //la inserisco in cima alla lista
+        $("#chat-container").prepend(chat_selezionata);
     }
 });
