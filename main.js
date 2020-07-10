@@ -26,7 +26,7 @@ $(document).ready(function() {
         //attivo il focus sull'input
         $("#text-input").show().focus();
         //aggiungo la funzione d'invio messaggio
-        invio_messaggio();
+        invia_messaggio();
     });
 
     //invio il messaggio al click del tasto "enter"
