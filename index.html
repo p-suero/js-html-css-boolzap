@@ -6,7 +6,7 @@
         <script src="https://kit.fontawesome.com/34a507967b.js" crossorigin="anonymous"></script>
         <link rel="icon" href="img/icon.png">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     </head>
@@ -295,6 +295,12 @@
                 </div>
             </div>
         </div>
+        <div id="popup-info">
+            <p>
+                La copia e pubblicazione della pagina è stata effettuata solo al fine di dimostrare le capacità di sviluppo
+            </p>
+            <p id="remove-popup">Chiudi messaggio [X]</p>
+        </div>
         <!-- inserisco un template tramite la libreria handlebars -->
         <script id="messaggio" type="text/x-handlebars-template">
             <div class="text {{tipo}}">
@@ -308,6 +314,6 @@
             </div>
         </script>
         <!-- link Java Script -->
-        <script src="main.js" charset="utf-8"></script>
+        <script src="js/main.js" charset="utf-8"></script>
     </body>
 </html>

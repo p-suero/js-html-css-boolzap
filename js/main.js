@@ -320,3 +320,8 @@ $(document).ready(function() {
         $(".message-container.active").scrollTop($(".message-container.active")[0].scrollHeight);
     }
 });
+
+//setto il popup all'apertura della pagina
+$("#remove-popup").click(function() {
+    $(this).parent().remove();
+})
