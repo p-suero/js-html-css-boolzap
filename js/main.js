@@ -323,5 +323,5 @@ $(document).ready(function() {
 
 //setto il popup all'apertura della pagina
 $("#remove-popup").click(function() {
-    $(this).parent().remove();
+    $(this).closest("#wrapper-popup").remove();
 })
