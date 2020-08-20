@@ -204,7 +204,7 @@ $(document).ready(function() {
                 "testo" : $("#text-input").val(),
                 "tipo" : "sent",
                 "orario" : time()
-            }
+            };
             //creo una variabile contenente il template secondo i parametri dell'oggetto
             var html_finale = template_function(messaggio);
             //aggiungo il messaggio nell html
@@ -234,7 +234,7 @@ $(document).ready(function() {
             "testo" : "ok",
             "tipo" : "received",
             "orario" : time()
-        }
+        };
         //creo una variabile contenente il template secondo i parametri dell'oggetto
         var html_finale = template_function(messaggio);
         //aggiungo il messaggio nell html
