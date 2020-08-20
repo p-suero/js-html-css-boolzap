@@ -84,7 +84,7 @@ $(document).ready(function() {
         }
     })
 
-    //se c'e testo visualizzo il caratter "X" per eliminare il valore dell'input
+    //se c'e testo, visualizzo il caratter "X" per eliminare il valore dell'input
     ricerca_contatti.keyup(function() {
         if ($(this).val().trim().length > 0) {
             $("#search-contact span").addClass("active");
